@@ -41,7 +41,7 @@ class Program
         try
         {
             am.addUser("bob", "123");
-            am.addUser("bob", "125"); //test la UserExistsException
+           // am.addUser("bob", "125"); //test la UserExistsException
             Console.WriteLine("Bob has been added !");
             am.removeUser("bob");
             Console.WriteLine("Bob has been removed !");
