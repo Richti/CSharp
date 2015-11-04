@@ -31,5 +31,10 @@ namespace AuthentificationN
         {
             return (CompareTo(obj) == 0) ? true : false;
         }
+
+        public override int GetHashCode() // should depends on immuable data...
+        {
+            return login.GetHashCode() * 17 + password.GetHashCode();
+        }
     }
 }

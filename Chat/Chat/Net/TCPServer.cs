@@ -13,67 +13,79 @@ namespace Net
 {
     abstract class TCPServer : MessageConnection, ICloneable
     {
-        public Socket waitSocket { get; set; }
-        public Socket commSocket { get; set; }
+        public TcpListener waitSocket { get; set; }
+        public TcpClient commSock { get; set; }
         public int port { get; set; }
         public IPAddress ip { get; set; }
+       
         public bool doRun { get; set; }
 
         public TCPServer(IPAddress ip, int port)
         {
             this.port = port;
             this.ip = ip;
-            waitSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            waitSocket = new TcpListener(ip,port);
             doRun = true;
         }
 
-        public void startServer(int port)
+        public void startServer()
         {
-            waitSocket.Bind(new IPEndPoint(ip, port));
-            waitSocket.Listen(10);
+            waitSocket.Start();
             run();
         }
 
         public void stopServer()
         {
-            waitSocket.Close();
+            waitSocket.Stop();
             doRun = false;
         }
 
         public void run()
         {
             Console.WriteLine("Lancement Serveur");
-            NetworkStream output = null;
-            while (doRun)
+           
+           // while (doRun)
             {
                 try
                 {
                     Console.WriteLine("Waiting for a connection...");
-                    commSocket = waitSocket.Accept();
+                    commSock = waitSocket.AcceptTcpClient();
                     Console.WriteLine("Connexion établit");
-                    output = new NetworkStream(commSocket);
+                    Message message = new Message(new Header("Paulo"), "Salut Toi!");
+                    sendMessage(message);
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.StackTrace);
                 }
-               
+                finally
+                {
+                    if (commSock != null)
+                    {
+                        commSock.Close();
+                    }
+                }
             }
            
             
         }
 
         abstract public void gereClient(Socket comm);
-   
 
-        public Message getMessage()
+
+        public Message getMessage() 
         {
-            throw new NotImplementedException();
+            NetworkStream output = commSock.GetStream();
+            Message message = Message.Receive(output);
+            output.Close();
+            return message;
         }
 
-        public void sendMessage(Message m)
+        public void sendMessage(Message m) 
         {
-            throw new NotImplementedException();
+            NetworkStream input = commSock.GetStream();
+            Message.send(m, input);
+            input.Close();
         }
 
         public object Clone()

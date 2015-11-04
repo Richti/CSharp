@@ -5,12 +5,15 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Net;
 
-namespace Net
+
+namespace Server
 {
-    class Server : TCPServer
+    class ServerGestTopics : TCPServer
     {
-        public Server(IPAddress ip, int port) : base(ip,port)
+        // surement add TCPGestTopics en attribut
+        public ServerGestTopics(IPAddress ip, int port) : base(ip,port)
         {
         }
 

@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using Chat;
 using AuthentificationN;
 using Net;
+using System.Net;
+using Server;
 
 class Program
 {
     public static void Main()
     {
-
+        /*
         // Test des fonctionnalités du chat : OK
         
         IChatter bob = new TextChatter("Bob");
         IChatter joe = new TextChatter("Joe");
         ITopicsManager gt = new TextGestTopics();
 
-        gt.createTopic("Java");
+        gt.createTopic("java");
         gt.createTopic("UML");
         gt.listTopics();
         gt.createTopic("jeux");
@@ -41,7 +44,7 @@ class Program
         try
         {
             am.addUser("bob", "123");
-           // am.addUser("bob", "125"); //test la UserExistsException
+            // am.addUser("bob", "125"); //test la UserExistsException
             Console.WriteLine("Bob has been added !");
             am.removeUser("bob");
             Console.WriteLine("Bob has been removed !");
@@ -104,11 +107,20 @@ class Program
         }catch (Exception e) {
             Console.WriteLine(e);
      }
-    
-    /*
-        Message msg = new Message();
-        Console.ReadKey(true);
     */
+    
+        IPAddress Ip = IPAddress.Parse("127.0.0.1");
+        int port = 55555;
+        ServerGestTopics server = new ServerGestTopics(Ip,port);
+        TCPClient client = new TCPClient(Ip, port);
+        Thread test = new Thread(new ThreadStart(client.connect));
+        test.Start();
+        server.startServer();
+    
+
+ 
+
+        Console.ReadKey(true);
     }
 }
 
