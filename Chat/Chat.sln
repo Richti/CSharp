@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
+# Visual Studio Express 14 for Windows Desktop
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat\Chat.csproj", "{93181931-CA14-4629-9496-9044892A8661}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat\Chat.csproj", "{C7283E1B-61BC-4AB6-AFA0-74E86E13D088}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93181931-CA14-4629-9496-9044892A8661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93181931-CA14-4629-9496-9044892A8661}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93181931-CA14-4629-9496-9044892A8661}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93181931-CA14-4629-9496-9044892A8661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7283E1B-61BC-4AB6-AFA0-74E86E13D088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7283E1B-61BC-4AB6-AFA0-74E86E13D088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7283E1B-61BC-4AB6-AFA0-74E86E13D088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7283E1B-61BC-4AB6-AFA0-74E86E13D088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
