@@ -10,6 +10,6 @@ namespace Server
     class TCPGestTopics : TextGestTopics
     {
          static int nextPort { get; set; }
-        // Surement une partie de ServerGestTopics
+        // à coder
     }
 }

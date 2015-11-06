@@ -10,7 +10,7 @@ namespace Chat
     class TextGestTopics : ITopicsManager
     {
         public Hashtable topicsChatRoom { get; set; }
-        
+
         public TextGestTopics()
         {
             topicsChatRoom = new Hashtable();

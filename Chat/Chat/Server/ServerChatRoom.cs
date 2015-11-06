@@ -13,7 +13,7 @@ namespace Server
     class ServerChatRoom : TCPServer, IChatter
     {
         // public String pseudo { get; set; } // utilité ?
-        // surement add TextChatRoom en attribut
+        public TextChatRoom concretCR { get; set; }
         public ServerChatRoom(IPAddress Ip, int port) : base(Ip,port)
         {
         }
