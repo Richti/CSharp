@@ -18,15 +18,12 @@ namespace AuthentificationN
 
         public void addUser(string login, string password) 
         {
-            foreach(User user in users)
-            {
-                if(user.Equals(login))
+           
+                if(users.Contains(new User(login,password))) 
                 {
                     throw new UserExistsException(login);       
-                }
-            }
-                users.Add(new User(login, password));
-                 
+                }          
+                users.Add(new User(login, password));         
         }
         
         public void removeUser(string login) 

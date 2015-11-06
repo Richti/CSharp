@@ -19,11 +19,13 @@ namespace Net
         public IPAddress ip { get; set; }
        
         public bool doRun { get; set; }
+        public bool treatClient { get; set; }
 
         public TCPServer(IPAddress ip, int port)
         {
             this.port = port;
             this.ip = ip;
+            this.treatClient = false;
             waitSocket = new TcpListener(ip,port);
             doRun = true;
         }
@@ -43,34 +45,38 @@ namespace Net
         public void run()
         {
             Console.WriteLine("Lancement Serveur");
-           
-           // while (doRun)
+            if(treatClient)
             {
-                try
+                // gereClient(commSock);
+
+                // juste pour le test
+                Message message = new Message(new Header("Paulo"), "Salut Toi!");
+                sendMessage(message);
+            }
+            else
+            {
+                while (doRun)
                 {
-                    Console.WriteLine("Waiting for a connection...");
-                    commSock = waitSocket.AcceptTcpClient();
-                    Console.WriteLine("Connexion établit");
-                    Message message = new Message(new Header("Paulo"), "Salut Toi!");
-                    sendMessage(message);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.StackTrace);
-                }
-                finally
-                {
-                    if (commSock != null)
+                    try
                     {
-                        commSock.Close();
+                        Console.WriteLine("Waiting for a connection...");
+                        commSock = waitSocket.AcceptTcpClient();
+                        Console.WriteLine("Connexion établit");
+
+                        TCPServer myClone = (TCPServer)Clone();
+                        myClone.treatClient = true;
+                        Thread newClient = new Thread(new ThreadStart(myClone.run));
+                        newClient.Start(); 
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.StackTrace);
                     }
                 }
-            }
-           
-            
+            }   
         }
 
-        abstract public void gereClient(Socket comm);
+        abstract public void gereClient(TcpClient comm);
 
 
         public Message getMessage() 
@@ -88,9 +94,9 @@ namespace Net
             input.Close();
         }
 
-        public object Clone()
+        public virtual object Clone()
         {
-            throw new NotImplementedException();
+            return null; 
         }
     }
 }

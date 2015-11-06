@@ -6,12 +6,17 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Chat;
-namespace Chat.Client
+using System.Collections;
+
+namespace Client
 {
     class ClientGestTopics : TCPClient, ITopicsManager
     {
+        
+
         public ClientGestTopics(IPAddress Ip, int port) : base (Ip,port)
         {
+            
         }
 
         public void createTopic(string name)
@@ -29,4 +34,5 @@ namespace Chat.Client
             throw new NotImplementedException();
         }
     }
+    
 }

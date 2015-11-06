@@ -24,7 +24,7 @@ namespace Chat
             }
             else
             {
-                topicsChatRoom.Add(name, new List<IChatroom>());
+                topicsChatRoom.Add(name, null);
             }
                 
         }
@@ -32,14 +32,12 @@ namespace Chat
         public IChatroom joinTopic(string topic)
         {
             if(topicsChatRoom.Contains(topic))
-            {
-                TextChatRoom cr = new TextChatRoom(topic);
-                if( (topicsChatRoom[topic] != null) && (topicsChatRoom[topic] is List<IChatroom>))
+            { 
+                if((topicsChatRoom[topic] != null) && (topicsChatRoom[topic] is TextChatRoom))
                 {
-                    List<IChatroom> l = (List<IChatroom>) topicsChatRoom[topic];
-                    l.Add(cr);
+                    return (TextChatRoom)topicsChatRoom[topic];
                 }
-                return cr;
+                return new TextChatRoom(topic); ;
             }
             else
             {

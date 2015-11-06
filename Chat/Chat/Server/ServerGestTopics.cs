@@ -19,7 +19,7 @@ namespace Server
             concretGT = new TCPGestTopics();
         }
 
-        public override void gereClient(Socket comm)
+        public override void gereClient(TcpClient comm)
         {
             throw new NotImplementedException();
         }
@@ -37,6 +37,13 @@ namespace Server
         public void createTopic(string name)
         {
             throw new NotImplementedException();
+        }
+
+        public override object Clone()
+        {
+            ServerChatRoom clone = new ServerChatRoom(ip, port);
+            clone.commSock = commSock;
+            return clone;
         }
     }
 }

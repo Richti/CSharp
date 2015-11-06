@@ -29,7 +29,7 @@ namespace Net
             serveur = new ServerGestTopics(Ip,port); 
         }
 
-        public void connect()
+        public void connect() // à modifier
         {
             try
             {

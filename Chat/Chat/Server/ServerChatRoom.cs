@@ -12,13 +12,12 @@ namespace Server
 {
     class ServerChatRoom : TCPServer, IChatter
     {
-        // public String pseudo { get; set; } // utilité ?
         public TextChatRoom concretCR { get; set; }
         public ServerChatRoom(IPAddress Ip, int port) : base(Ip,port)
         {
         }
 
-        public override void gereClient(Socket comm)
+        public override void gereClient(TcpClient comm)
         {
             throw new NotImplementedException();
         }
@@ -31,6 +30,13 @@ namespace Server
         public void receiveAMessage(string msg, IChatter c)
         {
             throw new NotImplementedException();
+        }
+
+        public override object Clone()
+        {
+            ServerChatRoom clone = new ServerChatRoom(ip,port);
+            clone.commSock = commSock;
+            return clone;
         }
     }
 }

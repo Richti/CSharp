@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Chat;
 
-namespace Chat.Client
+namespace Client
 {
     class ClientChatRoom : TCPClient, IChatroom
     {

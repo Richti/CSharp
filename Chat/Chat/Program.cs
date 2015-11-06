@@ -16,7 +16,7 @@ class Program
     {
         
 
-        /*
+        
         // Test des fonctionnalités du chat : OK
         
         IChatter bob = new TextChatter("Bob");
@@ -109,16 +109,19 @@ class Program
         }catch (Exception e) {
             Console.WriteLine(e);
      }
-    */
     
+    /*
         IPAddress Ip = IPAddress.Parse("127.0.0.1");
         int port = 55555;
         ServerGestTopics server = new ServerGestTopics(Ip,port);
-        TCPClient client = new TCPClient(Ip, port);
-        Thread test = new Thread(new ThreadStart(client.connect));
-        test.Start();
+        TCPClient client1 = new TCPClient(Ip, port);
+        Thread test1 = new Thread(new ThreadStart(client1.connect));
+        test1.Start();
+        TCPClient client2 = new TCPClient(Ip, port);
+        Thread test2 = new Thread(new ThreadStart(client2.connect));
+        test2.Start();
         server.startServer();
-    
+    */
 
  
 
