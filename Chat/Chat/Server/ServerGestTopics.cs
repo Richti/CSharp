@@ -10,7 +10,7 @@ using Chat;
 
 namespace Server
 {
-    class ServerGestTopics : TCPServer, ITopicsManager
+    class ServerGestTopics : TCPServer
     {
         public TCPGestTopics concretGT { get; set; }
         
@@ -21,27 +21,29 @@ namespace Server
 
         public override void gereClient(TcpClient comm)
         {
-            throw new NotImplementedException();
-        }
-
-        public void listTopics()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IChatroom joinTopic(string topic)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void createTopic(string name)
-        {
-            throw new NotImplementedException();
+            ns = commSock.GetStream();
+            // while(commSock.Connected)
+            {
+               
+                Message message = getMessage();
+                // à retravailler (vérifier le type etc)
+                
+                if(message.head.type == MessageType.LISTE_TOPICS)
+                {
+                    Message reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), concretGT.listTopics());
+                    sendMessage(reply);
+                }
+                
+                
+                
+            }
+            
+            
         }
 
         public override object Clone()
         {
-            ServerChatRoom clone = new ServerChatRoom(ip, port);
+            ServerGestTopics clone = new ServerGestTopics(ip, port);
             clone.commSock = commSock;
             return clone;
         }

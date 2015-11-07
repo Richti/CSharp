@@ -9,14 +9,13 @@ using AuthentificationN;
 using Net;
 using System.Net;
 using Server;
+using Client;
 
 class Program
 {
     public static void Main()
     {
-        
-
-        
+        /*
         // Test des fonctionnalités du chat : OK
         
         IChatter bob = new TextChatter("Bob");
@@ -25,9 +24,9 @@ class Program
 
         gt.createTopic("java");
         gt.createTopic("UML");
-        gt.listTopics();
+        Console.WriteLine(gt.listTopics());
         gt.createTopic("jeux");
-        gt.listTopics();
+        Console.WriteLine(gt.listTopics());
         IChatroom cr = gt.joinTopic("jeux");
         cr.join(bob);
         cr.post("Je suis seul ou quoi ?", bob);
@@ -36,7 +35,7 @@ class Program
         cr.post("Toi aussi tu chat sur les forums de jeux pendant les TP,Bob ?", joe);
         
 
-
+        
         // Test des fonctionnalitées de l'authentification : OK
 
         AuthentificationManager am = new Authentification();
@@ -109,19 +108,20 @@ class Program
         }catch (Exception e) {
             Console.WriteLine(e);
      }
+    */
+
     
-    /*
         IPAddress Ip = IPAddress.Parse("127.0.0.1");
         int port = 55555;
         ServerGestTopics server = new ServerGestTopics(Ip,port);
-        TCPClient client1 = new TCPClient(Ip, port);
+
+        ClientGestTopics client1 = new ClientGestTopics(Ip, port);
         Thread test1 = new Thread(new ThreadStart(client1.connect));
         test1.Start();
-        TCPClient client2 = new TCPClient(Ip, port);
-        Thread test2 = new Thread(new ThreadStart(client2.connect));
-        test2.Start();
+
+        
         server.startServer();
-    */
+    
 
  
 

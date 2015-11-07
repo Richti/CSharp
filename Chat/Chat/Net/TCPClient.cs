@@ -15,6 +15,7 @@ namespace Net
         public TCPServer serveur { get; set; }
         public IPAddress Ip { get; set; }
         public int port { get; set; }
+        public NetworkStream ns { get; set; }
 
         public TCPClient(IPAddress Ip, int port)
         {
@@ -34,22 +35,16 @@ namespace Net
             try
             {
                 commSock.Connect(Ip, port);
+                ns = commSock.GetStream();
                 Console.WriteLine("Connecté");
-                Message message = getMessage();
-                Console.WriteLine(message);
+
+                // ici on et censé capter les evenements
+                testEvent();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
-            }
-            finally
-            {
-                if (commSock != null)
-                {
-                    commSock.Close();
-                }
-            }
-       
+            }   
         }
 
         public TCPServer getServer()
@@ -59,9 +54,7 @@ namespace Net
 
         public Message getMessage() 
         {
-            NetworkStream output = commSock.GetStream();
-            Message message = Message.Receive(output);
-            output.Close();
+            Message message = Message.Receive(ns);
             return message;
         }
 
@@ -69,7 +62,8 @@ namespace Net
         {
             NetworkStream input = commSock.GetStream();
             Message.send(m, input);
-            input.Close();
         }
+
+        public virtual void testEvent() { }
     }
 }

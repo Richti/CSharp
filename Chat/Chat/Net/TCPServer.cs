@@ -17,7 +17,8 @@ namespace Net
         public TcpClient commSock { get; set; }
         public int port { get; set; }
         public IPAddress ip { get; set; }
-       
+        public NetworkStream ns { get; set; }
+
         public bool doRun { get; set; }
         public bool treatClient { get; set; }
 
@@ -47,11 +48,7 @@ namespace Net
             Console.WriteLine("Lancement Serveur");
             if(treatClient)
             {
-                // gereClient(commSock);
-
-                // juste pour le test
-                Message message = new Message(new Header("Paulo"), "Salut Toi!");
-                sendMessage(message);
+                 gereClient(commSock);
             }
             else
             {
@@ -79,19 +76,16 @@ namespace Net
         abstract public void gereClient(TcpClient comm);
 
 
-        public Message getMessage() 
+        public Message getMessage()
         {
-            NetworkStream output = commSock.GetStream();
-            Message message = Message.Receive(output);
-            output.Close();
+            Message message = Message.Receive(ns);
             return message;
         }
 
-        public void sendMessage(Message m) 
+        public void sendMessage(Message m)
         {
             NetworkStream input = commSock.GetStream();
             Message.send(m, input);
-            input.Close();
         }
 
         public virtual object Clone()

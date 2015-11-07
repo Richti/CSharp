@@ -13,6 +13,10 @@ namespace Server
         static int nextPort { get; set; }
         public Hashtable topicsChatRoom { get; set; }
 
+        public TCPGestTopics()
+        {
+            topicsChatRoom = new Hashtable();
+        }
 
         public void createTopic(string name)
         {
@@ -46,22 +50,20 @@ namespace Server
             }
         }
 
-        public void listTopics()
+        public String listTopics()
         {
-            ICollection topics = topicsChatRoom.Keys;
-            if (topics.Count == 0)
-            {
-                Console.WriteLine("There is no topics.");
-            }
-            else
-            {
-                Console.WriteLine("The openned topics are : ");
-                foreach (string topic in topics)
-                {
-                    Console.WriteLine(topic);
-                }
-            }
+            // pour le test : 
+            createTopic("Java"); createTopic("PHP");
 
+            ICollection topics = topicsChatRoom.Keys;
+            String topicsList = "";
+            foreach (string topic in topics)
+            {
+                topicsList += topic + ",";
+            }
+            return topicsList.Substring(0, topicsList.Length - 1); ; // to remove the last comma
         }
+
+
     }
 }

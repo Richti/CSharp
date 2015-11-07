@@ -10,26 +10,34 @@ using Chat;
 
 namespace Server
 {
-    class ServerChatRoom : TCPServer, IChatter
+    class ServerChatRoom : TCPServer, IChatter 
     {
         public TextChatRoom concretCR { get; set; }
+        private string _alias;
+
         public ServerChatRoom(IPAddress Ip, int port) : base(Ip,port)
         {
         }
 
         public override void gereClient(TcpClient comm)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("WTF?");
+        }
+
+        public string alias
+        {
+            get { return getAlias(); }
+            set { _alias = value; }
         }
 
         public string getAlias()
         {
-            throw new NotImplementedException();
+            return _alias;
         }
 
-        public void receiveAMessage(string msg, IChatter c)
+        public void receiveAMessage(string msg, IChatter c) // à modifier plus tard !
         {
-            throw new NotImplementedException();
+            Console.WriteLine("(At {0}) : {1} $> {2} ", alias, c.getAlias(), msg);
         }
 
         public override object Clone()

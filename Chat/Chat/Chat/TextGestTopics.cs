@@ -46,20 +46,22 @@ namespace Chat
             }
         }
 
-        public void listTopics()
+        public String listTopics()
         {
             ICollection topics = topicsChatRoom.Keys;
+            String topicsList = "";
             if(topics.Count == 0)
             {
-                Console.WriteLine("There is no topics.");
+                return "There is no topics.\n";
             }
             else
             {
-                Console.WriteLine("The openned topics are : ");
+                topicsList = "The openned topics are : \n";
                 foreach (string topic in topics)
                 {
-                    Console.WriteLine(topic);
+                    topicsList += topic + ",";
                 }
+                return topicsList.Substring(0, topicsList.Length - 1); ; // to remove the last comma
             }
           
         }

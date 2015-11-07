@@ -29,9 +29,17 @@ namespace Client
             throw new NotImplementedException();
         }
 
-        public void listTopics()
+        public String listTopics()
         {
-            throw new NotImplementedException();
+            Message request = new Message(new Header("Client", MessageType.LISTE_TOPICS), "Empty");
+            sendMessage(request);
+            Message message = getMessage();
+            return message.data;
+        }
+
+        public override void testEvent()
+        {
+            Console.WriteLine("Liste des topics : " + listTopics());
         }
     }
     
