@@ -24,20 +24,15 @@ namespace Chat
             }
             else
             {
-                topicsChatRoom.Add(name, null);
-            }
-                
+                topicsChatRoom.Add(name, new TextChatRoom(name));
+            }      
         }
 
         public IChatroom joinTopic(string topic)
         {
             if(topicsChatRoom.Contains(topic))
             { 
-                if((topicsChatRoom[topic] != null) && (topicsChatRoom[topic] is TextChatRoom))
-                {
-                    return (TextChatRoom)topicsChatRoom[topic];
-                }
-                return new TextChatRoom(topic); ;
+                 return (TextChatRoom)topicsChatRoom[topic];                
             }
             else
             {

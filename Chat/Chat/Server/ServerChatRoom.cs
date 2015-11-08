@@ -15,13 +15,14 @@ namespace Server
         public TextChatRoom concretCR { get; set; }
         private string _alias;
 
-        public ServerChatRoom(IPAddress Ip, int port) : base(Ip,port)
+        public ServerChatRoom(IPAddress Ip, String topicName) : base(Ip)
         {
+            concretCR = new TextChatRoom(topicName);
         }
 
         public override void gereClient(TcpClient comm)
         {
-            Console.WriteLine("WTF?");
+            Console.WriteLine("gere client du serverChatroom à faire !");
         }
 
         public string alias
@@ -42,7 +43,7 @@ namespace Server
 
         public override object Clone()
         {
-            ServerChatRoom clone = new ServerChatRoom(ip,port);
+            ServerChatRoom clone = new ServerChatRoom(ip,concretCR.topic);
             clone.commSock = commSock;
             return clone;
         }

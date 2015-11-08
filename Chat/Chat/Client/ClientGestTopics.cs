@@ -13,15 +13,14 @@ namespace Client
     class ClientGestTopics : TCPClient, ITopicsManager
     {
         
-
         public ClientGestTopics(IPAddress Ip, int port) : base (Ip,port)
-        {
-            
+        {            
         }
 
         public void createTopic(string name)
         {
-            throw new NotImplementedException();
+            Message request = new Message(new Header("Client", MessageType.CREATE_TOPIC), name);
+            sendMessage(request);
         }
 
         public IChatroom joinTopic(string topic)
@@ -39,7 +38,8 @@ namespace Client
 
         public override void testEvent()
         {
-            Console.WriteLine("Liste des topics : " + listTopics());
+            createTopic("Ruby"); createTopic("Java"); createTopic("PHP");
+            Console.WriteLine("Topics list : " + listTopics());
         }
     }
     

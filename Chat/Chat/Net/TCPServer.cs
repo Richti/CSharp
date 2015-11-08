@@ -15,24 +15,22 @@ namespace Net
     {
         public TcpListener waitSocket { get; set; }
         public TcpClient commSock { get; set; }
-        public int port { get; set; }
         public IPAddress ip { get; set; }
         public NetworkStream ns { get; set; }
 
         public bool doRun { get; set; }
         public bool treatClient { get; set; }
 
-        public TCPServer(IPAddress ip, int port)
+        public TCPServer(IPAddress ip)
         {
-            this.port = port;
             this.ip = ip;
-            this.treatClient = false;
-            waitSocket = new TcpListener(ip,port);
+            this.treatClient = false; 
             doRun = true;
         }
 
-        public void startServer()
+        public void startServer(int port)
         {
+            waitSocket = new TcpListener(ip, port);
             waitSocket.Start();
             run();
         }

@@ -14,15 +14,15 @@ namespace Server
     {
         public TCPGestTopics concretGT { get; set; }
         
-        public ServerGestTopics(IPAddress ip, int port) : base(ip,port)
+        public ServerGestTopics(IPAddress ip) : base(ip)
         {
-            concretGT = new TCPGestTopics();
+            concretGT = new TCPGestTopics(ip);
         }
 
         public override void gereClient(TcpClient comm)
         {
             ns = commSock.GetStream();
-            // while(commSock.Connected)
+             while(commSock.Connected)
             {
                
                 Message message = getMessage();
@@ -33,9 +33,13 @@ namespace Server
                     Message reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), concretGT.listTopics());
                     sendMessage(reply);
                 }
-                
-                
-                
+                if (message.head.type == MessageType.CREATE_TOPIC)
+                {
+                    concretGT.createTopic(message.data);
+                }
+
+
+
             }
             
             
@@ -43,7 +47,7 @@ namespace Server
 
         public override object Clone()
         {
-            ServerGestTopics clone = new ServerGestTopics(ip, port);
+            ServerGestTopics clone = new ServerGestTopics(ip);
             clone.commSock = commSock;
             return clone;
         }

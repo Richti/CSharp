@@ -5,28 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using Chat;
 using System.Collections;
+using System.Net;
 
 namespace Server
 {
     class TCPGestTopics : ITopicsManager
     {
         static int nextPort { get; set; }
+        public IPAddress ip { get; set; }
         public Hashtable topicsChatRoom { get; set; }
 
-        public TCPGestTopics()
+        public TCPGestTopics(IPAddress ip)
         {
             topicsChatRoom = new Hashtable();
+            this.ip = ip;
         }
 
-        public void createTopic(string name)
+        public void createTopic(string name) 
         {
             if (topicsChatRoom.Contains(name))
             {
-                Console.WriteLine("The topic is already existing");
+                throw new Exception("The topic exists already"); // à modifier
             }
             else
             {
-                topicsChatRoom.Add(name, new List<IChatroom>());
+                Console.WriteLine(nextPort);
+                ServerChatRoom scr = new ServerChatRoom(ip, name);
+                topicsChatRoom.Add(name, scr );
+                scr.treatClient = true;
+                scr.startServer(nextPort++);
             }
 
         }
@@ -51,10 +58,7 @@ namespace Server
         }
 
         public String listTopics()
-        {
-            // pour le test : 
-            createTopic("Java"); createTopic("PHP");
-
+        { 
             ICollection topics = topicsChatRoom.Keys;
             String topicsList = "";
             foreach (string topic in topics)

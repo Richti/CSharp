@@ -12,7 +12,6 @@ namespace Net
     class TCPClient : MessageConnection
     {
         public TcpClient commSock { get; set; }
-        public TCPServer serveur { get; set; }
         public IPAddress Ip { get; set; }
         public int port { get; set; }
         public NetworkStream ns { get; set; }
@@ -22,12 +21,12 @@ namespace Net
             this.Ip = Ip;
             this.port = port;
             commSock = new TcpClient();
-            setServer(Ip, port);
         }
 
         public void setServer(IPAddress Ip, int port)
         {
-            serveur = new ServerGestTopics(Ip,port); 
+            this.Ip = Ip;
+            this.port = port;
         }
 
         public void connect() // à modifier
@@ -45,11 +44,6 @@ namespace Net
             {
                 Console.WriteLine(e.StackTrace);
             }   
-        }
-
-        public TCPServer getServer()
-        {
-            return serveur;
         }
 
         public Message getMessage() 

@@ -15,9 +15,9 @@ class Program
 {
     public static void Main()
     {
-        /*
-        // Test des fonctionnalités du chat : OK
         
+        // Test des fonctionnalités du chat : OK
+        /*
         IChatter bob = new TextChatter("Bob");
         IChatter joe = new TextChatter("Joe");
         ITopicsManager gt = new TextGestTopics();
@@ -113,14 +113,14 @@ class Program
     
         IPAddress Ip = IPAddress.Parse("127.0.0.1");
         int port = 55555;
-        ServerGestTopics server = new ServerGestTopics(Ip,port);
+        ServerGestTopics server = new ServerGestTopics(Ip);
 
         ClientGestTopics client1 = new ClientGestTopics(Ip, port);
         Thread test1 = new Thread(new ThreadStart(client1.connect));
         test1.Start();
 
         
-        server.startServer();
+        server.startServer(port);
     
 
  
