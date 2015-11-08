@@ -42,17 +42,10 @@ namespace Server
         {
             if (topicsChatRoom.Contains(topic))
             {
-                TextChatRoom cr = new TextChatRoom(topic);
-                if ((topicsChatRoom[topic] != null) && (topicsChatRoom[topic] is List<IChatroom>))
-                {
-                    List<IChatroom> l = (List<IChatroom>)topicsChatRoom[topic];
-                    l.Add(cr);
-                }
-                return cr;
+                return (ServerChatRoom) topicsChatRoom[topic];
             }
             else
             {
-                Console.WriteLine("Topic non existant");
                 return null;
             }
         }

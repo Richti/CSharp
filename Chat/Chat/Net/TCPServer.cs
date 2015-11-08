@@ -15,6 +15,7 @@ namespace Net
     {
         public TcpListener waitSocket { get; set; }
         public TcpClient commSock { get; set; }
+        public int port { get; set; }
         public IPAddress ip { get; set; }
         public NetworkStream ns { get; set; }
 
@@ -30,6 +31,7 @@ namespace Net
 
         public void startServer(int port)
         {
+            this.port = port;
             waitSocket = new TcpListener(ip, port);
             waitSocket.Start();
             run();

@@ -10,7 +10,7 @@ using Chat;
 
 namespace Server
 {
-    class ServerChatRoom : TCPServer, IChatter 
+    class ServerChatRoom : TCPServer,IChatroom, IChatter 
     {
         public TextChatRoom concretCR { get; set; }
         private string _alias;
@@ -46,6 +46,26 @@ namespace Server
             ServerChatRoom clone = new ServerChatRoom(ip,concretCR.topic);
             clone.commSock = commSock;
             return clone;
+        }
+
+        public void post(string msg, IChatter c)
+        {
+            concretCR.post(msg, c);
+        }
+
+        public void quit(IChatter c)
+        {
+            concretCR.quit(c);
+        }
+
+        public void join(IChatter c)
+        {
+            concretCR.join(c);
+        }
+
+        public string getTopic()
+        {
+            return concretCR.getTopic();
         }
     }
 }

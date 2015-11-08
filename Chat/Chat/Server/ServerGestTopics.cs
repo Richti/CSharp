@@ -10,7 +10,7 @@ using Chat;
 
 namespace Server
 {
-    class ServerGestTopics : TCPServer
+    class ServerGestTopics : TCPServer, ITopicsManager
     {
         public TCPGestTopics concretGT { get; set; }
         
@@ -30,19 +30,27 @@ namespace Server
                 
                 if(message.head.type == MessageType.LISTE_TOPICS)
                 {
-                    Message reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), concretGT.listTopics());
+                    Message reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), listTopics());
                     sendMessage(reply);
                 }
                 if (message.head.type == MessageType.CREATE_TOPIC)
                 {
-                    concretGT.createTopic(message.data);
+                    createTopic(message.data);
+                }
+                if (message.head.type == MessageType.JOIN_TOPIC)
+                {
+                    IChatroom scr = joinTopic(message.data);
+                    int port = ((ServerChatRoom)scr).port;
+                    Message reply = new Message(new Header("Server", MessageType.JOIN_REPLY), port.ToString());
+                    sendMessage(reply);
                 }
 
 
 
+
             }
-            
-            
+
+
         }
 
         public override object Clone()
@@ -50,6 +58,21 @@ namespace Server
             ServerGestTopics clone = new ServerGestTopics(ip);
             clone.commSock = commSock;
             return clone;
+        }
+
+        public string listTopics()
+        {
+            return concretGT.listTopics();
+        }
+
+        public IChatroom joinTopic(string topic)
+        {
+            return concretGT.joinTopic(topic);
+        }
+
+        public void createTopic(string name)
+        {
+            concretGT.createTopic(name);
         }
     }
 }
