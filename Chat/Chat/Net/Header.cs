@@ -12,9 +12,7 @@ namespace Net
     public class Header
     {
         public String sender { get; set; }
-        public DateTime date { get; set; }
-
-        
+        public DateTime date { get; set; }    
         public MessageType type { get; set; } 
 
 

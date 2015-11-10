@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chat
@@ -30,7 +31,7 @@ namespace Chat
 
         public void post(string msg, IChatter c)
         {
-            foreach(TextChatter chatter in textChatters)
+            foreach(IChatter chatter in textChatters)
             {
                 chatter.receiveAMessage(msg, c);
             }

@@ -19,43 +19,37 @@ namespace Server
             concretGT = new TCPGestTopics(ip);
         }
 
-        public override void gereClient(TcpClient comm)
+        public override void gereClient(TcpClient comm) 
         {
-            ns = commSock.GetStream();
-             while(commSock.Connected)
-            {
-               
+            ns = comm.GetStream();
+             while(comm.Connected)
+            {               
                 Message message = getMessage();
-                // à retravailler (vérifier le type etc)
-                
-                if(message.head.type == MessageType.LISTE_TOPICS)
+                Message reply;
+                switch (message.head.type)
                 {
-                    Message reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), listTopics());
-                    sendMessage(reply);
-                }
-                if (message.head.type == MessageType.CREATE_TOPIC)
-                {
-                    createTopic(message.data);
-                }
-                if (message.head.type == MessageType.JOIN_TOPIC)
-                {
-                    IChatroom scr = joinTopic(message.data);
-                    int port = ((ServerChatRoom)scr).port;
-                    Message reply = new Message(new Header("Server", MessageType.JOIN_REPLY), port.ToString());
-                    sendMessage(reply);
-                }
-
-
-
-
+                    case MessageType.LISTE_TOPICS : 
+                        reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), listTopics());
+                        sendMessage(reply);
+                        break;
+                    case MessageType.CREATE_TOPIC:
+                        createTopic(message.data);
+                        break;
+                    case MessageType.JOIN_TOPIC:
+                        IChatroom scr = joinTopic(message.data);
+                        int port = ((ServerChatRoom)scr).port;
+                        reply = new Message(new Header("Server", MessageType.JOIN_REPLY), port.ToString());
+                        sendMessage(reply);
+                        break;
+                    default: break; 
+                }    
             }
-
-
         }
 
         public override object Clone()
         {
             ServerGestTopics clone = new ServerGestTopics(ip);
+            clone.concretGT = concretGT;
             clone.commSock = commSock;
             return clone;
         }

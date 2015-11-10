@@ -22,7 +22,26 @@ namespace Server
 
         public override void gereClient(TcpClient comm)
         {
-            Console.WriteLine("gere client du serverChatroom à faire !");
+            ns = comm.GetStream();
+            while (comm.Connected)
+            {
+                Message message = getMessage();
+                switch(message.head.type)
+                {
+                    case MessageType.JOINCR:
+                        this.alias = message.head.sender;
+                        join(this);
+                        break;
+                    case MessageType.POST:
+                        post(message.data,this);
+                        break;
+                    case MessageType.QUITCR:
+                        quit(this);
+                        break;
+                    default: break;
+                }
+
+            }
         }
 
         public string alias
@@ -36,14 +55,16 @@ namespace Server
             return _alias;
         }
 
-        public void receiveAMessage(string msg, IChatter c) // à modifier plus tard !
+        public void receiveAMessage(string msg, IChatter c) 
         {
-            Console.WriteLine("(At {0}) : {1} $> {2} ", alias, c.getAlias(), msg);
+            Message message = new Message(new Header(c.getAlias(),MessageType.RECV_MSG),msg);
+            sendMessage(message);
         }
 
-        public override object Clone()
+        public override object Clone() 
         {
             ServerChatRoom clone = new ServerChatRoom(ip,concretCR.topic);
+            clone.concretCR = concretCR;
             clone.commSock = commSock;
             return clone;
         }

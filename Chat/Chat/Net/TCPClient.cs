@@ -36,9 +36,6 @@ namespace Net
                 commSock.Connect(Ip, port);
                 ns = commSock.GetStream();
                 Console.WriteLine("Connecté");
-
-                // ici on et censé capter les evenements
-                testEvent();
             }
             catch (Exception e)
             {
@@ -51,13 +48,9 @@ namespace Net
             Message message = Message.Receive(ns);
             return message;
         }
-
         public void sendMessage(Message m) 
         {
-            NetworkStream input = commSock.GetStream();
-            Message.send(m, input);
+            Message.send(m, ns);
         }
-
-        public virtual void testEvent() { }
     }
 }

@@ -29,28 +29,17 @@ namespace Client
             sendMessage(request);
             Message reply = getMessage();
             int port =  int.Parse(reply.data);
-            /*
-            Connection avec clientChatRoom à faire
-            setServer(this.Ip, port);
-            connect();
-            */
-            return null;
+            ClientChatRoom ccr = new ClientChatRoom(Ip,port,topic);
+            ccr.connect();
+            return ccr;
         }
 
         public String listTopics()
         {
-            Message request = new Message(new Header("Client", MessageType.LISTE_TOPICS), "Empty");
+            Message request = new Message(new Header("Client", MessageType.LISTE_TOPICS), "");
             sendMessage(request);
             Message reply = getMessage();
             return reply.data;
-        }
-
-        public override void testEvent()
-        {
-            createTopic("Ruby"); createTopic("Java"); createTopic("PHP");
-            Console.WriteLine("Topics list : " + listTopics());
-            joinTopic("Ruby");
-            Console.WriteLine("Topic presque rejoint");
         }
     }
     

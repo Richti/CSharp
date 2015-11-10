@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Chat;
 using System.Collections;
 using System.Net;
+using System.Threading;
 
 namespace Server
 {
@@ -15,6 +16,10 @@ namespace Server
         public IPAddress ip { get; set; }
         public Hashtable topicsChatRoom { get; set; }
 
+        static TCPGestTopics()
+        {
+            nextPort = 12000;
+        }
         public TCPGestTopics(IPAddress ip)
         {
             topicsChatRoom = new Hashtable();
@@ -32,8 +37,9 @@ namespace Server
                 Console.WriteLine(nextPort);
                 ServerChatRoom scr = new ServerChatRoom(ip, name);
                 topicsChatRoom.Add(name, scr );
-                scr.treatClient = true;
-                scr.startServer(nextPort++);
+                ParameterizedThreadStart ts = new ParameterizedThreadStart(scr.startServer);
+                Thread t = new Thread(ts);
+                t.Start(nextPort++);
             }
 
         }

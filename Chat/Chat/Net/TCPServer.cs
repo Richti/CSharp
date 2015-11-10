@@ -32,7 +32,14 @@ namespace Net
         public void startServer(int port)
         {
             this.port = port;
-            waitSocket = new TcpListener(ip, port);
+            waitSocket = new TcpListener(ip, this.port);
+            waitSocket.Start();
+            run();
+        }
+        public void startServer(Object port) // pour les threads
+        {  
+            this.port = (int) port; 
+            waitSocket = new TcpListener(ip, this.port);
             waitSocket.Start();
             run();
         }
@@ -45,13 +52,14 @@ namespace Net
 
         public void run()
         {
-            Console.WriteLine("Lancement Serveur");
+
             if(treatClient)
             {
                  gereClient(commSock);
             }
             else
             {
+                Console.WriteLine("Lancement Serveur");
                 while (doRun)
                 {
                     try
@@ -60,7 +68,7 @@ namespace Net
                         commSock = waitSocket.AcceptTcpClient();
                         Console.WriteLine("Connexion établit");
 
-                        TCPServer myClone = (TCPServer)Clone();
+                        TCPServer myClone = (TCPServer)Clone(); // à modifier pour pouvoir centraliser (voir note p29)
                         myClone.treatClient = true;
                         Thread newClient = new Thread(new ThreadStart(myClone.run));
                         newClient.Start(); 
@@ -84,8 +92,7 @@ namespace Net
 
         public void sendMessage(Message m)
         {
-            NetworkStream input = commSock.GetStream();
-            Message.send(m, input);
+            Message.send(m, ns);
         }
 
         public virtual object Clone()
