@@ -68,7 +68,7 @@ namespace Net
                         commSock = waitSocket.AcceptTcpClient();
                         Console.WriteLine("Connexion établit");
 
-                        TCPServer myClone = (TCPServer)Clone(); // à modifier pour pouvoir centraliser (voir note p29)
+                        TCPServer myClone = (TCPServer)Clone(); 
                         myClone.treatClient = true;
                         Thread newClient = new Thread(new ThreadStart(myClone.run));
                         newClient.Start(); 

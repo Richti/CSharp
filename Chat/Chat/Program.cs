@@ -129,8 +129,6 @@ class Program
         client1.createTopic("Ruby"); client1.createTopic("Java"); client2.createTopic("PHP");
         Console.WriteLine("Topics list : " + server.listTopics());
 
-        // Il faut synchroniser les threads avec des mutex etc ! voir l145
-
         IChatroom cr2 = client2.joinTopic("PHP");
         IChatroom cr1 = client1.joinTopic("PHP");
 
@@ -142,7 +140,6 @@ class Program
         cr2.join(joe);
         cr1.post("Tiens, salut Bob !", bob);
         cr2.post("Yop", joe);
-        Thread.Sleep(200); // sinon ici erreur possible si on enleve cette ligne : il faut mutex les ressources partagées !
         cr1.quit(bob);
         cr2.post("Toi aussi tu chat sur les forums de jeux pendant les TP,Bob ?", joe);
         

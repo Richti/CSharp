@@ -28,43 +28,53 @@ namespace Server
 
         public void createTopic(string name) 
         {
-            if (topicsChatRoom.Contains(name))
+            lock(topicsChatRoom)
             {
-                throw new Exception("The topic exists already"); // à modifier
+                if (topicsChatRoom.Contains(name))
+                {
+                    throw new Exception("The topic exists already"); // à modifier
+                }
+                else
+                {
+                    Console.WriteLine(nextPort);
+                    ServerChatRoom scr = new ServerChatRoom(ip, name);
+                    topicsChatRoom.Add(name, scr);
+                    ParameterizedThreadStart ts = new ParameterizedThreadStart(scr.startServer);
+                    Thread t = new Thread(ts);
+                    t.Start(nextPort++);
+                }
             }
-            else
-            {
-                Console.WriteLine(nextPort);
-                ServerChatRoom scr = new ServerChatRoom(ip, name);
-                topicsChatRoom.Add(name, scr );
-                ParameterizedThreadStart ts = new ParameterizedThreadStart(scr.startServer);
-                Thread t = new Thread(ts);
-                t.Start(nextPort++);
-            }
+           
 
         }
 
         public IChatroom joinTopic(string topic)
         {
-            if (topicsChatRoom.Contains(topic))
+            lock (topicsChatRoom)
             {
-                return (ServerChatRoom) topicsChatRoom[topic];
-            }
-            else
-            {
-                return null;
-            }
+                if (topicsChatRoom.Contains(topic))
+                {
+                    return (ServerChatRoom)topicsChatRoom[topic];
+                }
+                else
+                {
+                    return null;
+                }
+            }  
         }
 
         public String listTopics()
-        { 
-            ICollection topics = topicsChatRoom.Keys;
-            String topicsList = "";
-            foreach (string topic in topics)
+        {
+            lock (topicsChatRoom)
             {
-                topicsList += topic + ",";
-            }
-            return topicsList.Substring(0, topicsList.Length - 1); ; // to remove the last comma
+                ICollection topics = topicsChatRoom.Keys;
+                String topicsList = "";
+                foreach (string topic in topics)
+                {
+                    topicsList += topic + ",";
+                }
+                return topicsList.Substring(0, topicsList.Length - 1); ; // to remove the last comma
+            }      
         }
 
 
