@@ -9,7 +9,6 @@ namespace Net
     interface MessageConnection
     {
         Message getMessage();
-
         void sendMessage(Message m);
     }
 }

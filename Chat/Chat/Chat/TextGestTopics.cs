@@ -10,7 +10,7 @@ namespace Chat
     class TextGestTopics : ITopicsManager
     {
         public Hashtable topicsChatRoom { get; set; }
-        
+
         public TextGestTopics()
         {
             topicsChatRoom = new Hashtable();
@@ -24,22 +24,15 @@ namespace Chat
             }
             else
             {
-                topicsChatRoom.Add(name, new List<IChatroom>());
-            }
-                
+                topicsChatRoom.Add(name, new TextChatRoom(name));
+            }      
         }
 
         public IChatroom joinTopic(string topic)
         {
             if(topicsChatRoom.Contains(topic))
-            {
-                TextChatRoom cr = new TextChatRoom(topic);
-                if( (topicsChatRoom[topic] != null) && (topicsChatRoom[topic] is List<IChatroom>))
-                {
-                    List<IChatroom> l = (List<IChatroom>) topicsChatRoom[topic];
-                    l.Add(cr);
-                }
-                return cr;
+            { 
+                 return (TextChatRoom)topicsChatRoom[topic];                
             }
             else
             {
@@ -48,20 +41,22 @@ namespace Chat
             }
         }
 
-        public void listTopics()
+        public String listTopics()
         {
             ICollection topics = topicsChatRoom.Keys;
+            String topicsList = "";
             if(topics.Count == 0)
             {
-                Console.WriteLine("There is no topics.");
+                return "There is no topics.\n";
             }
             else
             {
-                Console.WriteLine("The openned topics are : ");
+                topicsList = "The openned topics are : \n";
                 foreach (string topic in topics)
                 {
-                    Console.WriteLine(topic);
+                    topicsList += topic + ",";
                 }
+                return topicsList.Substring(0, topicsList.Length - 1); ; // to remove the last comma
             }
           
         }

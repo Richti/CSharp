@@ -51,6 +51,7 @@
     <Compile Include="AuthentificationN\AuthentificationManager.cs" />
     <Compile Include="Client\ClientChatRoom.cs" />
     <Compile Include="Client\ClientGestTopics.cs" />
+    <Compile Include="Net\MessageType.cs" />
     <Compile Include="Server\ServerChatRoom.cs" />
     <Compile Include="Net\TCPClient.cs" />
     <Compile Include="Net\Header.cs" />

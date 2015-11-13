@@ -17,19 +17,29 @@ namespace Net
         public TcpClient commSock { get; set; }
         public int port { get; set; }
         public IPAddress ip { get; set; }
-       
-        public bool doRun { get; set; }
+        public NetworkStream ns { get; set; }
 
-        public TCPServer(IPAddress ip, int port)
+        public bool doRun { get; set; }
+        public bool treatClient { get; set; }
+
+        public TCPServer(IPAddress ip)
         {
-            this.port = port;
             this.ip = ip;
-            waitSocket = new TcpListener(ip,port);
+            this.treatClient = false; 
             doRun = true;
         }
 
-        public void startServer()
+        public void startServer(int port)
         {
+            this.port = port;
+            waitSocket = new TcpListener(ip, this.port);
+            waitSocket.Start();
+            run();
+        }
+        public void startServer(Object port) // pour les threads
+        {  
+            this.port = (int) port; 
+            waitSocket = new TcpListener(ip, this.port);
             waitSocket.Start();
             run();
         }
@@ -42,55 +52,52 @@ namespace Net
 
         public void run()
         {
-            Console.WriteLine("Lancement Serveur");
-           
-           // while (doRun)
+
+            if(treatClient)
             {
-                try
+                 gereClient(commSock);
+            }
+            else
+            {
+                Console.WriteLine("Lancement Serveur");
+                while (doRun)
                 {
-                    Console.WriteLine("Waiting for a connection...");
-                    commSock = waitSocket.AcceptTcpClient();
-                    Console.WriteLine("Connexion établit");
-                    Message message = new Message(new Header("Paulo"), "Salut Toi!");
-                    sendMessage(message);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.StackTrace);
-                }
-                finally
-                {
-                    if (commSock != null)
+                    try
                     {
-                        commSock.Close();
+                        Console.WriteLine("Waiting for a connection...");
+                        commSock = waitSocket.AcceptTcpClient();
+                        Console.WriteLine("Connexion établit");
+
+                        TCPServer myClone = (TCPServer)Clone(); 
+                        myClone.treatClient = true;
+                        Thread newClient = new Thread(new ThreadStart(myClone.run));
+                        newClient.Start(); 
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.StackTrace);
                     }
                 }
-            }
-           
-            
+            }   
         }
 
-        abstract public void gereClient(Socket comm);
+        abstract public void gereClient(TcpClient comm);
 
 
-        public Message getMessage() 
+        public Message getMessage()
         {
-            NetworkStream output = commSock.GetStream();
-            Message message = Message.Receive(output);
-            output.Close();
+            Message message = Message.Receive(ns);
             return message;
         }
 
-        public void sendMessage(Message m) 
+        public void sendMessage(Message m)
         {
-            NetworkStream input = commSock.GetStream();
-            Message.send(m, input);
-            input.Close();
+            Message.send(m, ns);
         }
 
-        public object Clone()
+        public virtual object Clone()
         {
-            throw new NotImplementedException();
+            return null; 
         }
     }
 }

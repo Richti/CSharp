@@ -6,20 +6,67 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Net;
-
+using Chat;
 
 namespace Server
 {
-    class ServerGestTopics : TCPServer
+    class ServerGestTopics : TCPServer, ITopicsManager
     {
-        // surement add TCPGestTopics en attribut
-        public ServerGestTopics(IPAddress ip, int port) : base(ip,port)
+        public TCPGestTopics concretGT { get; set; }
+        
+        public ServerGestTopics(IPAddress ip) : base(ip)
         {
+            concretGT = new TCPGestTopics(ip);
         }
 
-        public override void gereClient(Socket comm)
+        public override void gereClient(TcpClient comm) 
         {
-            throw new NotImplementedException();
+            ns = comm.GetStream();
+             while(comm.Connected)
+            {               
+                Message message = getMessage();
+                Message reply;
+                switch (message.head.type)
+                {
+                    case MessageType.LISTE_TOPICS : 
+                        reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), listTopics());
+                        sendMessage(reply);
+                        break;
+                    case MessageType.CREATE_TOPIC:
+                        createTopic(message.data);
+                        break;
+                    case MessageType.JOIN_TOPIC:
+                        IChatroom scr = joinTopic(message.data);
+                        int port = ((ServerChatRoom)scr).port;
+                        reply = new Message(new Header("Server", MessageType.JOIN_REPLY), port.ToString());
+                        sendMessage(reply);
+                        break;
+                    default: break; 
+                }    
+            }
+        }
+
+        public override object Clone()
+        {
+            ServerGestTopics clone = new ServerGestTopics(ip);
+            clone.concretGT = concretGT;
+            clone.commSock = commSock;
+            return clone;
+        }
+
+        public string listTopics()
+        {
+            return concretGT.listTopics();
+        }
+
+        public IChatroom joinTopic(string topic)
+        {
+            return concretGT.joinTopic(topic);
+        }
+
+        public void createTopic(string name)
+        {
+            concretGT.createTopic(name);
         }
     }
 }
