@@ -38,6 +38,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +53,18 @@
     <Compile Include="AuthentificationN\AuthentificationManager.cs" />
     <Compile Include="Client\ClientChatRoom.cs" />
     <Compile Include="Client\ClientGestTopics.cs" />
+    <Compile Include="Form\Connexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Connexion.Designer.cs">
+      <DependentUpon>Connexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\InfoUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\InfoUser.Designer.cs">
+      <DependentUpon>InfoUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Net\MessageType.cs" />
     <Compile Include="Server\ServerChatRoom.cs" />
     <Compile Include="Net\TCPClient.cs" />
@@ -73,7 +87,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Form\Connexion.resx">
+      <DependentUpon>Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\InfoUser.resx">
+      <DependentUpon>InfoUser.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

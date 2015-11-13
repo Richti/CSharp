@@ -10,12 +10,13 @@ using Net;
 using System.Net;
 using Server;
 using Client;
+using System.Windows.Forms;
 
 class Program
 {
     public static void Main()
     {
-        
+
         // Test des fonctionnalités du chat : OK
         /*
         IChatter bob = new TextChatter("Bob");
@@ -110,40 +111,45 @@ class Program
      }
     */
 
-    
-        IPAddress Ip = IPAddress.Parse("127.0.0.1");
-        int port = 55555;
-        ServerGestTopics server = new ServerGestTopics(Ip);
-        ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
-        Thread t = new Thread(ts);
-        t.Start(port);
+        /*
+            IPAddress Ip = IPAddress.Parse("127.0.0.1");
+            int port = 55555;
+            ServerGestTopics server = new ServerGestTopics(Ip);
+            ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
+            Thread t = new Thread(ts);
+            t.Start(port);
 
-        ClientGestTopics client1 = new ClientGestTopics(Ip, port);
-        Thread test1 = new Thread(new ThreadStart(client1.connect));
-        test1.Start();
+            ClientGestTopics client1 = new ClientGestTopics(Ip, port);
+            Thread test1 = new Thread(new ThreadStart(client1.connect));
+            test1.Start();
 
-        ClientGestTopics client2 = new ClientGestTopics(Ip, port);
-        Thread test2 = new Thread(new ThreadStart(client2.connect));
-        test2.Start();
+            ClientGestTopics client2 = new ClientGestTopics(Ip, port);
+            Thread test2 = new Thread(new ThreadStart(client2.connect));
+            test2.Start();
 
-        client1.createTopic("Ruby"); client1.createTopic("Java"); client2.createTopic("PHP");
-        Console.WriteLine("Topics list : " + server.listTopics());
+            client1.createTopic("Ruby"); client1.createTopic("Java"); client2.createTopic("PHP");
+            Console.WriteLine("Topics list : " + server.listTopics());
 
-        IChatroom cr2 = client2.joinTopic("PHP");
-        IChatroom cr1 = client1.joinTopic("PHP");
+            IChatroom cr2 = client2.joinTopic("PHP");
+            IChatroom cr1 = client1.joinTopic("PHP");
 
-        IChatter bob = new TextChatter("Bob");
-        IChatter joe = new TextChatter("Joe");
+            IChatter bob = new TextChatter("Bob");
+            IChatter joe = new TextChatter("Joe");
 
-        cr1.join(bob);
-        cr1.post("Je suis seul ou quoi ?", bob);
-        cr2.join(joe);
-        cr1.post("Tiens, salut Bob !", bob);
-        cr2.post("Yop", joe);
-        cr1.quit(bob);
-        cr2.post("Toi aussi tu chat sur les forums de jeux pendant les TP,Bob ?", joe);
-        
-        Console.ReadKey(true);
+            cr1.join(bob);
+            cr1.post("Je suis seul ou quoi ?", bob);
+            cr2.join(joe);
+            cr1.post("Tiens, salut Bob !", bob);
+            cr2.post("Yop", joe);
+            cr1.quit(bob);
+            cr2.post("Toi aussi tu chat sur les forums de jeux pendant les TP,Bob ?", joe);
+
+            Console.ReadKey(true);
+            */
+
+       Application.EnableVisualStyles();
+       Application.SetCompatibleTextRenderingDefault(false);
+       Application.Run(new Connexion());
     }
 }
 
