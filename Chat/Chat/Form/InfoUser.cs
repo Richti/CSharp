@@ -28,7 +28,7 @@ namespace Chat
         private void InfoUser_Load(object sender, EventArgs e)
         {
             labelUser.Text = "Welcome : " + MyProperty;
-            Text = "Coucou " + MyProperty;
+            Text = "Utilisateur";
         }
 
         private void labelUser_Click(object sender, EventArgs e)
@@ -36,6 +36,9 @@ namespace Chat
             
         }
 
-        
+        private void buttonDéco_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

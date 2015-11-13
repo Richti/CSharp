@@ -18,6 +18,7 @@ namespace Chat
         public Connexion()
         {
             InitializeComponent();
+            am = new Authentification();    
         }
 
         private void Connexion_Load(object sender, EventArgs e)
@@ -37,18 +38,35 @@ namespace Chat
 
         private void buttonConnexion_Click(object sender, EventArgs e)
         {
-            am.authentify(textBoxLogin.Text, textBoxPassword.Text);
-            this.Hide();
-            InfoUser info = new InfoUser();
-            info.MyProperty = textBoxLogin.Text;
-            info.ShowDialog();
+            try {
+                am = new Authentification(); //Obliger de réinstancier...
+                am.load("./../../../Users.txt");
+                am.authentify(textBoxLogin.Text, textBoxPassword.Text);
+                InfoUser info = new InfoUser();
+                info.MyProperty = textBoxLogin.Text;
+                info.ShowDialog();
+            }
+            catch(WrongPasswordException e1)
+            {
+                System.Windows.Forms.MessageBox.Show("Erreur de mot de passe !");
+            }
+            catch(UserUnknownException e1)
+            {
+                System.Windows.Forms.MessageBox.Show("Ce compte n'existe pas !");
+            }
         }
 
         private void buttonCréer_Click(object sender, EventArgs e)
         {
-            am = new Authentification();
-            am.addUser(textBoxLogin.Text, textBoxPassword.Text);
-            System.Windows.Forms.MessageBox.Show("Votre compte à bien été créé !", textBoxLogin.Text);
+            try {
+                am.addUser(textBoxLogin.Text, textBoxPassword.Text);
+                am.save("./../../../Users.txt");
+                System.Windows.Forms.MessageBox.Show("Votre compte à bien été créé !", textBoxLogin.Text);
+            }
+            catch(UserExistsException e1)
+            {
+                System.Windows.Forms.MessageBox.Show("Merci de prendre un autre login !", "Compte existant");
+            }
         }
     }
 }
