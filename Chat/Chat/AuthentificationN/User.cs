@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AuthentificationN 
 {
-    class User : IComparable // à serialiser
+    public class User : IComparable // à serialiser PS : fallait mettre cette classe en public ^^
     {
         public string login { get; set; }
         public string password { get; set; }

@@ -16,6 +16,14 @@ class Program
 {
     public static void Main()
     {
+       Application.EnableVisualStyles();
+       Application.SetCompatibleTextRenderingDefault(false);
+       Application.Run(new Connexion());
+    }
+
+    public void test()
+    {
+
 
         // Test des fonctionnalités du chat : OK
         /*
@@ -147,9 +155,6 @@ class Program
             Console.ReadKey(true);
             */
 
-       Application.EnableVisualStyles();
-       Application.SetCompatibleTextRenderingDefault(false);
-       Application.Run(new Connexion());
     }
 }
 

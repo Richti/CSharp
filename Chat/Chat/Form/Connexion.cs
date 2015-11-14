@@ -13,7 +13,8 @@ namespace Chat
 {
     public partial class Connexion : Form
     {
-        Authentification am;
+        private Authentification am;
+        private User user;
 
         public Connexion()
         {
@@ -42,15 +43,17 @@ namespace Chat
                 am = new Authentification(); //Obliger de réinstancier...
                 am.load("./../../../Users.txt");
                 am.authentify(textBoxLogin.Text, textBoxPassword.Text);
-                InfoUser info = new InfoUser();
-                info.MyProperty = textBoxLogin.Text;
+                this.Hide();
+
+                user = new User(textBoxLogin.Text, textBoxPassword.Text);
+                InfoUser info = new InfoUser(user);
                 info.ShowDialog();
             }
-            catch(WrongPasswordException e1)
+            catch(WrongPasswordException)
             {
                 System.Windows.Forms.MessageBox.Show("Erreur de mot de passe !");
             }
-            catch(UserUnknownException e1)
+            catch(UserUnknownException)
             {
                 System.Windows.Forms.MessageBox.Show("Ce compte n'existe pas !");
             }
@@ -63,7 +66,7 @@ namespace Chat
                 am.save("./../../../Users.txt");
                 System.Windows.Forms.MessageBox.Show("Votre compte à bien été créé !", textBoxLogin.Text);
             }
-            catch(UserExistsException e1)
+            catch(UserExistsException)
             {
                 System.Windows.Forms.MessageBox.Show("Merci de prendre un autre login !", "Compte existant");
             }
