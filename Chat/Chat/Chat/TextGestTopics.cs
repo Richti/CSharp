@@ -51,7 +51,7 @@ namespace Chat
             }
             else
             {
-                topicsList = "The openned topics are : \n";
+                topicsList = "";
                 foreach (string topic in topics)
                 {
                     topicsList += topic + ",";

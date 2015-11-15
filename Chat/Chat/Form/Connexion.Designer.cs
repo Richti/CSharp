@@ -42,9 +42,9 @@
             this.labelLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLogin.Location = new System.Drawing.Point(93, 66);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(65, 22);
+            this.labelLogin.Size = new System.Drawing.Size(54, 22);
             this.labelLogin.TabIndex = 0;
-            this.labelLogin.Text = "LOGIN";
+            this.labelLogin.Text = "Login";
             this.labelLogin.Click += new System.EventHandler(this.labelLogin_Click);
             // 
             // labelPassword
@@ -53,9 +53,9 @@
             this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPassword.Location = new System.Drawing.Point(93, 150);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(115, 22);
+            this.labelPassword.Size = new System.Drawing.Size(89, 22);
             this.labelPassword.TabIndex = 1;
-            this.labelPassword.Text = "PASSWORD";
+            this.labelPassword.Text = "Password";
             this.labelPassword.Click += new System.EventHandler(this.labelPassword_Click);
             // 
             // textBoxLogin
@@ -101,6 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(490, 335);
             this.Controls.Add(this.buttonCréer);
             this.Controls.Add(this.buttonConnexion);

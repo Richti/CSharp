@@ -10,6 +10,7 @@ namespace AuthentificationN
     class Authentification : AuthentificationManager
     {
         public List<User> users { get; set; }
+
         public Authentification()
         {
             users = new List<User>();
@@ -69,13 +70,11 @@ namespace AuthentificationN
 
         public void save(string path)
         {
-           StreamWriter sw = new StreamWriter(path);
-           foreach(User user in users)
-           {
-               sw.WriteLine(user.login + ";" + user.password);
-           }
-           sw.Close();
-        }
+            //Plus efficace
+            var item = users[users.Count - 1]; // Accède au dernier élément de la liste car c'est seulement lui qu'on veut ajouter !
+            File.AppendAllText(path, item.login + ";" + item.password + Environment.NewLine); // On l'ajoute à la suite du fichier.txt
+            Console.WriteLine(File.ReadAllText(path)); // Pour checker
+          }
 
     }
 }

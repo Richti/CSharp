@@ -18,6 +18,8 @@ class Program
     {
        Application.EnableVisualStyles();
        Application.SetCompatibleTextRenderingDefault(false);
+       /*User U1 = new User("Vuitton", "Louis");
+       Application.Run(new InfoUser(U1));*/
        Application.Run(new Connexion());
     }
 

@@ -55,6 +55,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +82,11 @@
       <DependentUpon>InfoUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Net\MessageType.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Server\ServerChatRoom.cs" />
     <Compile Include="Net\TCPClient.cs" />
     <Compile Include="Net\Header.cs" />
@@ -108,6 +114,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\InfoUser.resx">
       <DependentUpon>InfoUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
