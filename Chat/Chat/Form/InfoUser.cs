@@ -1,12 +1,16 @@
 ﻿using AuthentificationN;
+using Client;
 using Net;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,6 +22,11 @@ namespace Chat
         private TextChatter chatter;
         private TextGestTopics topic;
         private IChatroom cr;
+         
+        private ServerGestTopics server;
+        private ClientGestTopics client1;
+        private IPAddress Ip;
+        private int port;
 
         public InfoUser(User U1)
         {
@@ -26,6 +35,7 @@ namespace Chat
             splitContainer1.SplitterDistance = 128; //Permet de bien placer ce pu*ain de séparteur...
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Remove(tabPage3); // cache la tabpage
+           
         }
 
         private void InfoUser_Load(object sender, EventArgs e)
@@ -42,7 +52,6 @@ namespace Chat
 
         private void buttonDéco_Click(object sender, EventArgs e)
         {
-            Close();
             Application.Exit();
         }
 
@@ -69,12 +78,19 @@ namespace Chat
             }
             else
             {
-                chatter = new TextChatter(textBoxAlias.Text);
-                labelAlias.Text = "Ton alias est : " + chatter.alias;
-                labelAlias.Show();
-                Text = "Enjoy " + chatter.alias + " !";
-                tabControl1.TabPages.Insert(1, tabPage2);
-                tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
+                if (tabControl1.TabPages.Count <= 1)
+                {
+                    chatter = new TextChatter(textBoxAlias.Text);
+                    labelAlias.Text = "Ton alias est : " + chatter.alias;
+                    labelAlias.Show();
+                    Text = "Enjoy " + chatter.alias + " !";
+                    tabControl1.TabPages.Insert(1, tabPage2);
+                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
+                }
+                else if(tabControl1.TabPages.Count >1)
+                        {
+                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
+                }
             }
         }
 
@@ -122,11 +138,31 @@ namespace Chat
             }
             else
             {
-                tabControl1.TabPages.Insert(2, tabPage3); //Réaffiche la tabPage à sa place d'origine
-                tabPage3.Text = "Salon : " + comboBox1.Text;
-                tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"]; // Bouge de page
-                cr = topic.joinTopic(comboBox1.Text);
-                textBoxConv.Text = "(Message from Chatroom : " + comboBox1.Text + ") " + chatter.alias + " has join the room";
+                if (labelStartServeur.Text == "Etat du Server : ON")
+                {
+                    connexion();
+                    if (tabControl1.TabPages.Count == 2)
+                    {
+                        tabControl1.TabPages.Insert(2, tabPage3); //Réaffiche la tabPage à sa place d'origine
+                        tabPage3.Text = "Salon : " + comboBox1.Text;
+                        tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"]; // Bouge de page
+                        cr = topic.joinTopic(comboBox1.Text);
+                        textBoxConv.Text = "(Message from Chatroom : " + comboBox1.Text + ") " + chatter.alias + " has join the room";
+                    }
+                    else
+                    {
+                        tabPage3.Text = "Salon : " + comboBox1.Text;
+                        TabPage tabPage = new TabPage();
+                        tabControl1.SelectedTab = tabControl1.TabPages["tabPage"];
+                        cr = topic.joinTopic(comboBox1.Text);
+                        textBoxConv.Text = "(Message from Chatroom : " + comboBox1.Text + ") " + chatter.alias + " has join the room";
+                    }
+                } else
+                {
+                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage1"];
+                    System.Windows.Forms.MessageBox.Show("Merci de lancer le serveur !", "Aucun server lancé");
+                    labelStartServeur.Text = "Merci de lancer le serveur !";
+                }
             }
         }
 
@@ -140,6 +176,38 @@ namespace Chat
             cr.post(textBoxConv.Text, chatter);
             textBoxConv.Text += Environment.NewLine + richTextBoxMsg.Text;
             richTextBoxMsg.Text = "";
+        }
+
+        private void buttonLaunchServeur_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                launcher();
+                labelStartServeur.Text = "Etat du Server : ON";
+               
+            }
+            catch(Exception error)
+            {
+                labelStartServeur.Text = "Error lors du lancement du serveur !";
+            }
+        }
+
+        public bool launcher()
+        {
+            Ip = IPAddress.Parse("127.0.0.1");
+            server = new ServerGestTopics(Ip);
+            port = 55555;
+            ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
+            Thread t = new Thread(ts);
+            t.Start(port);
+            return true;
+        }
+
+        public void connexion()
+        {
+            client1 = new ClientGestTopics(Ip, port);
+            Thread test1 = new Thread(new ThreadStart(client1.connect));
+            test1.Start();
         }
     }
 }

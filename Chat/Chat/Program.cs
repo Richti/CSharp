@@ -18,9 +18,9 @@ class Program
     {
        Application.EnableVisualStyles();
        Application.SetCompatibleTextRenderingDefault(false);
-       /*User U1 = new User("Vuitton", "Louis");
-       Application.Run(new InfoUser(U1));*/
-       Application.Run(new Connexion());
+       User U1 = new User("Vuitton", "Louis");
+       Application.Run(new InfoUser(U1));
+     // Application.Run(new Connexion());
     }
 
     public void test()
@@ -124,6 +124,7 @@ class Program
         /*
             IPAddress Ip = IPAddress.Parse("127.0.0.1");
             int port = 55555;
+
             ServerGestTopics server = new ServerGestTopics(Ip);
             ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
             Thread t = new Thread(ts);

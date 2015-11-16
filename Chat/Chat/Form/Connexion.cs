@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,7 +20,8 @@ namespace Chat
         public Connexion()
         {
             InitializeComponent();
-            am = new Authentification();    
+            am = new Authentification();
+            
         }
 
         private void Connexion_Load(object sender, EventArgs e)

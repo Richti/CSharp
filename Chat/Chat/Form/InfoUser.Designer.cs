@@ -36,6 +36,8 @@
             this.labelAlias = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.labelStartServeur = new System.Windows.Forms.Label();
+            this.buttonLaunchServeur = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelSalonCréer = new System.Windows.Forms.Label();
@@ -76,7 +78,7 @@
             // buttonDéco
             // 
             this.buttonDéco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDéco.Location = new System.Drawing.Point(268, 307);
+            this.buttonDéco.Location = new System.Drawing.Point(310, 316);
             this.buttonDéco.Name = "buttonDéco";
             this.buttonDéco.Size = new System.Drawing.Size(148, 50);
             this.buttonDéco.TabIndex = 1;
@@ -141,6 +143,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage1.Controls.Add(this.labelStartServeur);
+            this.tabPage1.Controls.Add(this.buttonLaunchServeur);
             this.tabPage1.Controls.Add(this.labelUser);
             this.tabPage1.Controls.Add(this.labelAlias);
             this.tabPage1.Controls.Add(this.buttonDéco);
@@ -153,6 +157,26 @@
             this.tabPage1.Size = new System.Drawing.Size(528, 448);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Compte";
+            // 
+            // labelStartServeur
+            // 
+            this.labelStartServeur.AutoSize = true;
+            this.labelStartServeur.ForeColor = System.Drawing.Color.Red;
+            this.labelStartServeur.Location = new System.Drawing.Point(79, 253);
+            this.labelStartServeur.Name = "labelStartServeur";
+            this.labelStartServeur.Size = new System.Drawing.Size(192, 25);
+            this.labelStartServeur.TabIndex = 8;
+            this.labelStartServeur.Text = "Etat du Server : OFF";
+            // 
+            // buttonLaunchServeur
+            // 
+            this.buttonLaunchServeur.Location = new System.Drawing.Point(79, 316);
+            this.buttonLaunchServeur.Name = "buttonLaunchServeur";
+            this.buttonLaunchServeur.Size = new System.Drawing.Size(139, 50);
+            this.buttonLaunchServeur.TabIndex = 7;
+            this.buttonLaunchServeur.Text = "Start Server";
+            this.buttonLaunchServeur.UseVisualStyleBackColor = true;
+            this.buttonLaunchServeur.Click += new System.EventHandler(this.buttonLaunchServeur_Click);
             // 
             // tabPage2
             // 
@@ -388,5 +412,7 @@
         private System.Windows.Forms.Button buttonAccéderSalons;
         private System.Windows.Forms.TextBox textBoxConv;
         private System.Windows.Forms.Label labelErrorCreaSal;
+        private System.Windows.Forms.Button buttonLaunchServeur;
+        private System.Windows.Forms.Label labelStartServeur;
     }
 }
