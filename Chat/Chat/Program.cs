@@ -131,7 +131,8 @@ class Program
             t.Start(port);
 
             ClientGestTopics client1 = new ClientGestTopics(Ip, port);
-            Thread test1 = new Thread(new ThreadStart(client1.connect));
+            Thread test1 = new Thread(new ThreadStart(client1.
+            ct));
             test1.Start();
 
             ClientGestTopics client2 = new ClientGestTopics(Ip, port);

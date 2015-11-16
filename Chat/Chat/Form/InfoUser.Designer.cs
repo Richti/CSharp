@@ -52,6 +52,7 @@
             this.textBoxConv = new System.Windows.Forms.TextBox();
             this.buttonEnvoyer = new System.Windows.Forms.Button();
             this.richTextBoxMsg = new System.Windows.Forms.RichTextBox();
+            this.buttonQuitter = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -305,6 +306,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.LightSalmon;
+            this.tabPage3.Controls.Add(this.buttonQuitter);
             this.tabPage3.Controls.Add(this.textBoxConv);
             this.tabPage3.Controls.Add(this.buttonEnvoyer);
             this.tabPage3.Controls.Add(this.richTextBoxMsg);
@@ -343,6 +345,16 @@
             this.richTextBoxMsg.Size = new System.Drawing.Size(448, 54);
             this.richTextBoxMsg.TabIndex = 4;
             this.richTextBoxMsg.Text = "";
+            // 
+            // buttonQuitter
+            // 
+            this.buttonQuitter.Location = new System.Drawing.Point(41, 382);
+            this.buttonQuitter.Name = "buttonQuitter";
+            this.buttonQuitter.Size = new System.Drawing.Size(107, 37);
+            this.buttonQuitter.TabIndex = 7;
+            this.buttonQuitter.Text = "Quitter";
+            this.buttonQuitter.UseVisualStyleBackColor = true;
+            this.buttonQuitter.Click += new System.EventHandler(this.buttonQuitter_Click);
             // 
             // InfoUser
             // 
@@ -395,5 +407,6 @@
         private System.Windows.Forms.TextBox textBoxAlias;
         private System.Windows.Forms.Label labelAlias;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button buttonQuitter;
     }
 }

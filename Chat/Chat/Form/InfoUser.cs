@@ -20,13 +20,13 @@ namespace Chat
     {
         private User utilisateur;
         private TextChatter chatter;
-        private TextGestTopics topic;
-        private IChatroom cr;
+        private IChatroom iChat;
          
         private ServerGestTopics server;
-        private ClientGestTopics cg;
-        private IPAddress Ip;
-        private int port;
+        private IPAddress Ip = IPAddress.Parse("127.0.0.1");
+        private int port = 55555;
+        
+        private ClientGestTopics clientGT;
 
         public InfoUser(User U1)
         {
@@ -35,7 +35,6 @@ namespace Chat
             splitContainer1.SplitterDistance = 128; //Permet de bien placer ce pu*ain de séparteur...
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Remove(tabPage3); // cache la tabpage
-           
         }
 
         private void InfoUser_Load(object sender, EventArgs e)
@@ -77,6 +76,8 @@ namespace Chat
                     chatter = new TextChatter(textBoxAlias.Text);
                     labelAlias.Text = "Ton alias est : " + chatter.alias;
                     labelAlias.Show();
+
+                    //Interface
                     Text = "Enjoy " + chatter.alias + " !";
                     tabControl1.TabPages.Insert(1, tabPage2);
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
@@ -97,12 +98,13 @@ namespace Chat
             }
             else
             {
-                topic = new TextGestTopics();
-                //cg.createTopic(textBoxNomSalon.Text); // client
-                topic.createTopic(textBoxNomSalon.Text);
+                connexion();
+                clientGT.createTopic(textBoxNomSalon.Text);
+
                 labelSalonCréer.Text = "Votre salon " + textBoxNomSalon.Text + " a été créer avec succès !";
                 labelSalonCréer.Show();
-                comboBox1.Items.Add((String)topic.listTopics());
+
+                comboBox1.Items.Add(server.listTopics());
                 comboBox1.Text = textBoxNomSalon.Text;
             }
 
@@ -127,13 +129,14 @@ namespace Chat
             {
                 if (labelStartServeur.Text == "Etat du Server : ON")
                 {
-                    connexion();
+                    //Mise en forme
                     tabControl1.TabPages.Insert(2, tabPage3);
                     tabPage3.Text = "Salon : " + comboBox1.Text;                   
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"];
-                    cg.createTopic(comboBox1.Text); // Marche pas encore
-                    cr = topic.joinTopic(comboBox1.Text);
-                    textBoxConv.Text = "(Message from Chatroom : " + comboBox1.Text + ") " + chatter.alias + " has join the room";
+
+                    iChat = server.joinTopic(comboBox1.Text);
+                    iChat.join(chatter);
+                    textBoxConv.Text = "(Message from Chatroom : " + iChat.getTopic() + ") " + chatter.alias + " has join the room";
                     }
                  else
                 {
@@ -147,16 +150,14 @@ namespace Chat
        
         private void buttonEnvoyer_Click(object sender, EventArgs e)
         {
-            cr.post(textBoxConv.Text, chatter);
+            iChat.post(textBoxConv.Text, chatter);
             textBoxConv.Text += Environment.NewLine + richTextBoxMsg.Text;
             richTextBoxMsg.Text = "";
         }
 
         public bool launcherServer()
         {
-            Ip = IPAddress.Parse("127.0.0.1");
             server = new ServerGestTopics(Ip);
-            port = 55555;
             ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
             Thread t = new Thread(ts);
             t.Start(port);
@@ -165,9 +166,14 @@ namespace Chat
 
         public void connexion()
         {
-            cg = new ClientGestTopics(Ip, port);
-            Thread test1 = new Thread(new ThreadStart(cg.connect));
+            clientGT = new ClientGestTopics(Ip, port);
+            Thread test1 = new Thread(new ThreadStart(clientGT.connect));
             test1.Start();
+        }
+
+        private void buttonQuitter_Click(object sender, EventArgs e)
+        {
+            iChat.quit(chatter);
         }
     }
 }

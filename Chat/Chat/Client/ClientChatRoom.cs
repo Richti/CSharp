@@ -47,6 +47,7 @@ namespace Client
             Message request = new Message(new Header(c.getAlias(), MessageType.QUITCR), "");
             sendMessage(request);
             doRun = false;
+            Console.WriteLine("Quitter : " + request);
         }
 
         public void runReceiveMsg() 
