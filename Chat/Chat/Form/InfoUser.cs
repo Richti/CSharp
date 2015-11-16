@@ -24,7 +24,7 @@ namespace Chat
         private IChatroom cr;
          
         private ServerGestTopics server;
-        private ClientGestTopics client1;
+        private ClientGestTopics cg;
         private IPAddress Ip;
         private int port;
 
@@ -45,30 +45,13 @@ namespace Chat
             Text = "Chat";
         }
 
-        private void labelUser_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void buttonDéco_Click(object sender, EventArgs e)
         {
+            server.stopServer();
             Application.Exit();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelAlias_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxAlias_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
@@ -80,6 +63,17 @@ namespace Chat
             {
                 if (tabControl1.TabPages.Count <= 1)
                 {
+                    try
+                    {
+                        launcherServer();
+                        labelStartServeur.Text = "Etat du Server : ON";
+
+                    }
+                    catch (Exception)
+                    {
+                        labelStartServeur.Text = "Error lors du lancement du serveur !";
+                    }
+
                     chatter = new TextChatter(textBoxAlias.Text);
                     labelAlias.Text = "Ton alias est : " + chatter.alias;
                     labelAlias.Show();
@@ -104,6 +98,7 @@ namespace Chat
             else
             {
                 topic = new TextGestTopics();
+                //cg.createTopic(textBoxNomSalon.Text); // client
                 topic.createTopic(textBoxNomSalon.Text);
                 labelSalonCréer.Text = "Votre salon " + textBoxNomSalon.Text + " a été créer avec succès !";
                 labelSalonCréer.Show();
@@ -113,21 +108,13 @@ namespace Chat
 
         }
 
-        private void labelSalonCréer_Click(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            
-        }
 
         private void buttonAccéderSalons_Click(object sender, EventArgs e)
         {
@@ -141,23 +128,14 @@ namespace Chat
                 if (labelStartServeur.Text == "Etat du Server : ON")
                 {
                     connexion();
-                    if (tabControl1.TabPages.Count == 2)
-                    {
-                        tabControl1.TabPages.Insert(2, tabPage3); //Réaffiche la tabPage à sa place d'origine
-                        tabPage3.Text = "Salon : " + comboBox1.Text;
-                        tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"]; // Bouge de page
-                        cr = topic.joinTopic(comboBox1.Text);
-                        textBoxConv.Text = "(Message from Chatroom : " + comboBox1.Text + ") " + chatter.alias + " has join the room";
+                    tabControl1.TabPages.Insert(2, tabPage3);
+                    tabPage3.Text = "Salon : " + comboBox1.Text;                   
+                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"];
+                    cg.createTopic(comboBox1.Text); // Marche pas encore
+                    cr = topic.joinTopic(comboBox1.Text);
+                    textBoxConv.Text = "(Message from Chatroom : " + comboBox1.Text + ") " + chatter.alias + " has join the room";
                     }
-                    else
-                    {
-                        tabPage3.Text = "Salon : " + comboBox1.Text;
-                        TabPage tabPage = new TabPage();
-                        tabControl1.SelectedTab = tabControl1.TabPages["tabPage"];
-                        cr = topic.joinTopic(comboBox1.Text);
-                        textBoxConv.Text = "(Message from Chatroom : " + comboBox1.Text + ") " + chatter.alias + " has join the room";
-                    }
-                } else
+                 else
                 {
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage1"];
                     System.Windows.Forms.MessageBox.Show("Merci de lancer le serveur !", "Aucun server lancé");
@@ -166,11 +144,7 @@ namespace Chat
             }
         }
 
-        private void richTextBoxConv_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void buttonEnvoyer_Click(object sender, EventArgs e)
         {
             cr.post(textBoxConv.Text, chatter);
@@ -178,21 +152,7 @@ namespace Chat
             richTextBoxMsg.Text = "";
         }
 
-        private void buttonLaunchServeur_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                launcher();
-                labelStartServeur.Text = "Etat du Server : ON";
-               
-            }
-            catch(Exception error)
-            {
-                labelStartServeur.Text = "Error lors du lancement du serveur !";
-            }
-        }
-
-        public bool launcher()
+        public bool launcherServer()
         {
             Ip = IPAddress.Parse("127.0.0.1");
             server = new ServerGestTopics(Ip);
@@ -205,8 +165,8 @@ namespace Chat
 
         public void connexion()
         {
-            client1 = new ClientGestTopics(Ip, port);
-            Thread test1 = new Thread(new ThreadStart(client1.connect));
+            cg = new ClientGestTopics(Ip, port);
+            Thread test1 = new Thread(new ThreadStart(cg.connect));
             test1.Start();
         }
     }

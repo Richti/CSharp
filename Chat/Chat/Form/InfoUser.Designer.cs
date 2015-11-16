@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelUser = new System.Windows.Forms.Label();
             this.buttonDéco = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxAlias = new System.Windows.Forms.TextBox();
             this.buttonOk = new System.Windows.Forms.Button();
-            this.labelAlias = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.labelAlias = new System.Windows.Forms.Label();
+            this.textBoxAlias = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelUser = new System.Windows.Forms.Label();
             this.labelStartServeur = new System.Windows.Forms.Label();
-            this.buttonLaunchServeur = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelSalonCréer = new System.Windows.Forms.Label();
@@ -45,9 +44,9 @@
             this.buttonValiderSalon = new System.Windows.Forms.Button();
             this.labelNomSalon = new System.Windows.Forms.Label();
             this.textBoxNomSalon = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.labelErrorCreaSal = new System.Windows.Forms.Label();
             this.buttonAccéderSalons = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBoxConv = new System.Windows.Forms.TextBox();
@@ -63,18 +62,6 @@
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // labelUser
-            // 
-            this.labelUser.AutoSize = true;
-            this.labelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUser.Location = new System.Drawing.Point(74, 54);
-            this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(147, 25);
-            this.labelUser.TabIndex = 0;
-            this.labelUser.Text = "Texte de Prez";
-            this.labelUser.Visible = false;
-            this.labelUser.Click += new System.EventHandler(this.labelUser_Click);
-            // 
             // buttonDéco
             // 
             this.buttonDéco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,25 +73,6 @@
             this.buttonDéco.UseVisualStyleBackColor = true;
             this.buttonDéco.Click += new System.EventHandler(this.buttonDéco_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(79, 132);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 25);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Alias";
-            // 
-            // textBoxAlias
-            // 
-            this.textBoxAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAlias.Location = new System.Drawing.Point(168, 129);
-            this.textBoxAlias.Name = "textBoxAlias";
-            this.textBoxAlias.Size = new System.Drawing.Size(149, 30);
-            this.textBoxAlias.TabIndex = 4;
-            this.textBoxAlias.TextChanged += new System.EventHandler(this.textBoxAlias_TextChanged);
-            // 
             // buttonOk
             // 
             this.buttonOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -115,18 +83,6 @@
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
-            // 
-            // labelAlias
-            // 
-            this.labelAlias.AutoSize = true;
-            this.labelAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAlias.ForeColor = System.Drawing.Color.Red;
-            this.labelAlias.Location = new System.Drawing.Point(79, 203);
-            this.labelAlias.Name = "labelAlias";
-            this.labelAlias.Size = new System.Drawing.Size(231, 25);
-            this.labelAlias.TabIndex = 6;
-            this.labelAlias.Text = "Merci de choisir un alias !";
-            this.labelAlias.Click += new System.EventHandler(this.labelAlias_Click);
             // 
             // tabControl1
             // 
@@ -143,20 +99,59 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage1.Controls.Add(this.labelStartServeur);
-            this.tabPage1.Controls.Add(this.buttonLaunchServeur);
-            this.tabPage1.Controls.Add(this.labelUser);
             this.tabPage1.Controls.Add(this.labelAlias);
+            this.tabPage1.Controls.Add(this.textBoxAlias);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.labelUser);
+            this.tabPage1.Controls.Add(this.labelStartServeur);
             this.tabPage1.Controls.Add(this.buttonDéco);
             this.tabPage1.Controls.Add(this.buttonOk);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.textBoxAlias);
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(528, 448);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Compte";
+            // 
+            // labelAlias
+            // 
+            this.labelAlias.AutoSize = true;
+            this.labelAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAlias.ForeColor = System.Drawing.Color.Red;
+            this.labelAlias.Location = new System.Drawing.Point(79, 200);
+            this.labelAlias.Name = "labelAlias";
+            this.labelAlias.Size = new System.Drawing.Size(231, 25);
+            this.labelAlias.TabIndex = 12;
+            this.labelAlias.Text = "Merci de choisir un alias !";
+            // 
+            // textBoxAlias
+            // 
+            this.textBoxAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAlias.Location = new System.Drawing.Point(161, 126);
+            this.textBoxAlias.Name = "textBoxAlias";
+            this.textBoxAlias.Size = new System.Drawing.Size(149, 30);
+            this.textBoxAlias.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(79, 129);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 25);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Alias";
+            // 
+            // labelUser
+            // 
+            this.labelUser.AutoSize = true;
+            this.labelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUser.Location = new System.Drawing.Point(79, 51);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(147, 25);
+            this.labelUser.TabIndex = 9;
+            this.labelUser.Text = "Texte de Prez";
+            this.labelUser.Visible = false;
             // 
             // labelStartServeur
             // 
@@ -167,16 +162,6 @@
             this.labelStartServeur.Size = new System.Drawing.Size(192, 25);
             this.labelStartServeur.TabIndex = 8;
             this.labelStartServeur.Text = "Etat du Server : OFF";
-            // 
-            // buttonLaunchServeur
-            // 
-            this.buttonLaunchServeur.Location = new System.Drawing.Point(79, 316);
-            this.buttonLaunchServeur.Name = "buttonLaunchServeur";
-            this.buttonLaunchServeur.Size = new System.Drawing.Size(139, 50);
-            this.buttonLaunchServeur.TabIndex = 7;
-            this.buttonLaunchServeur.Text = "Start Server";
-            this.buttonLaunchServeur.UseVisualStyleBackColor = true;
-            this.buttonLaunchServeur.Click += new System.EventHandler(this.buttonLaunchServeur_Click);
             // 
             // tabPage2
             // 
@@ -215,9 +200,9 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.LightSalmon;
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel2.Controls.Add(this.labelErrorCreaSal);
             this.splitContainer1.Panel2.Controls.Add(this.buttonAccéderSalons);
-            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.splitContainer1.Size = new System.Drawing.Size(522, 445);
@@ -230,13 +215,12 @@
             this.labelSalonCréer.AutoSize = true;
             this.labelSalonCréer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSalonCréer.ForeColor = System.Drawing.Color.Red;
-            this.labelSalonCréer.Location = new System.Drawing.Point(78, 135);
+            this.labelSalonCréer.Location = new System.Drawing.Point(35, 130);
             this.labelSalonCréer.Name = "labelSalonCréer";
             this.labelSalonCréer.Size = new System.Drawing.Size(211, 25);
-            this.labelSalonCréer.TabIndex = 4;
+            this.labelSalonCréer.TabIndex = 5;
             this.labelSalonCréer.Text = "Message de Validation";
             this.labelSalonCréer.Visible = false;
-            this.labelSalonCréer.Click += new System.EventHandler(this.labelSalonCréer_Click);
             // 
             // labelCréerSalon
             // 
@@ -277,6 +261,15 @@
             this.textBoxNomSalon.Size = new System.Drawing.Size(100, 30);
             this.textBoxNomSalon.TabIndex = 2;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(119, 88);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(145, 33);
+            this.comboBox1.TabIndex = 8;
+            // 
             // labelErrorCreaSal
             // 
             this.labelErrorCreaSal.AutoSize = true;
@@ -298,16 +291,6 @@
             this.buttonAccéderSalons.Text = "Accéder";
             this.buttonAccéderSalons.UseVisualStyleBackColor = true;
             this.buttonAccéderSalons.Click += new System.EventHandler(this.buttonAccéderSalons_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(144, 88);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(145, 33);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -388,13 +371,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.Button buttonDéco;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxAlias;
         private System.Windows.Forms.Button buttonOk;
-        private System.Windows.Forms.Label labelAlias;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -405,14 +383,17 @@
         private System.Windows.Forms.Label labelNomSalon;
         private System.Windows.Forms.Label labelCréerSalon;
         private System.Windows.Forms.Button buttonValiderSalon;
-        private System.Windows.Forms.Label labelSalonCréer;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonAccéderSalons;
         private System.Windows.Forms.TextBox textBoxConv;
         private System.Windows.Forms.Label labelErrorCreaSal;
-        private System.Windows.Forms.Button buttonLaunchServeur;
         private System.Windows.Forms.Label labelStartServeur;
+        private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelSalonCréer;
+        private System.Windows.Forms.TextBox textBoxAlias;
+        private System.Windows.Forms.Label labelAlias;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

@@ -21,6 +21,7 @@ namespace Client
         {
             Message request = new Message(new Header("Client", MessageType.CREATE_TOPIC), name);
             sendMessage(request);
+            Console.WriteLine(request.ToString());
         }
 
         public IChatroom joinTopic(string topic)
