@@ -49,10 +49,10 @@
             this.buttonAccéderSalons = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonQuitter = new System.Windows.Forms.Button();
             this.textBoxConv = new System.Windows.Forms.TextBox();
             this.buttonEnvoyer = new System.Windows.Forms.Button();
             this.richTextBoxMsg = new System.Windows.Forms.RichTextBox();
-            this.buttonQuitter = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -160,9 +160,9 @@
             this.labelStartServeur.ForeColor = System.Drawing.Color.Red;
             this.labelStartServeur.Location = new System.Drawing.Point(79, 253);
             this.labelStartServeur.Name = "labelStartServeur";
-            this.labelStartServeur.Size = new System.Drawing.Size(192, 25);
+            this.labelStartServeur.Size = new System.Drawing.Size(182, 25);
             this.labelStartServeur.TabIndex = 8;
-            this.labelStartServeur.Text = "Etat du Server : OFF";
+            this.labelStartServeur.Text = "Etat du Server : ON";
             // 
             // tabPage2
             // 
@@ -317,6 +317,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Chat";
             // 
+            // buttonQuitter
+            // 
+            this.buttonQuitter.Location = new System.Drawing.Point(41, 382);
+            this.buttonQuitter.Name = "buttonQuitter";
+            this.buttonQuitter.Size = new System.Drawing.Size(107, 37);
+            this.buttonQuitter.TabIndex = 7;
+            this.buttonQuitter.Text = "Quitter";
+            this.buttonQuitter.UseVisualStyleBackColor = true;
+            this.buttonQuitter.Click += new System.EventHandler(this.buttonQuitter_Click);
+            // 
             // textBoxConv
             // 
             this.textBoxConv.BackColor = System.Drawing.Color.White;
@@ -345,16 +355,6 @@
             this.richTextBoxMsg.Size = new System.Drawing.Size(448, 54);
             this.richTextBoxMsg.TabIndex = 4;
             this.richTextBoxMsg.Text = "";
-            // 
-            // buttonQuitter
-            // 
-            this.buttonQuitter.Location = new System.Drawing.Point(41, 382);
-            this.buttonQuitter.Name = "buttonQuitter";
-            this.buttonQuitter.Size = new System.Drawing.Size(107, 37);
-            this.buttonQuitter.TabIndex = 7;
-            this.buttonQuitter.Text = "Quitter";
-            this.buttonQuitter.UseVisualStyleBackColor = true;
-            this.buttonQuitter.Click += new System.EventHandler(this.buttonQuitter_Click);
             // 
             // InfoUser
             // 
@@ -395,10 +395,10 @@
         private System.Windows.Forms.Label labelNomSalon;
         private System.Windows.Forms.Label labelCréerSalon;
         private System.Windows.Forms.Button buttonValiderSalon;
+        private System.Windows.Forms.TextBox textBoxConv;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonAccéderSalons;
-        private System.Windows.Forms.TextBox textBoxConv;
         private System.Windows.Forms.Label labelErrorCreaSal;
         private System.Windows.Forms.Label labelStartServeur;
         private System.Windows.Forms.Label labelUser;
@@ -408,5 +408,10 @@
         private System.Windows.Forms.Label labelAlias;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonQuitter;
+
+        
+
+      public System.Windows.Forms.TextBox getTextBoxConv() { return textBoxConv; }
+
     }
 }

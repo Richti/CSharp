@@ -1,4 +1,5 @@
 ﻿using AuthentificationN;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,12 +18,15 @@ namespace Chat
         private Authentification am;
         private User user;
 
+        
+
         public Connexion()
         {
             InitializeComponent();
             am = new Authentification();
-            
-        }
+            am.load("./../../../Users.txt");
+           
+    }
 
         private void Connexion_Load(object sender, EventArgs e)
         {
@@ -42,8 +46,7 @@ namespace Chat
         private void buttonConnexion_Click(object sender, EventArgs e)
         {
             try {
-                am = new Authentification(); //Obliger de réinstancier...
-                am.load("./../../../Users.txt");
+
                 am.authentify(textBoxLogin.Text, textBoxPassword.Text);
                 this.Hide();
 
@@ -64,6 +67,7 @@ namespace Chat
         private void buttonCréer_Click(object sender, EventArgs e)
         {
             try {
+                
                 am.addUser(textBoxLogin.Text, textBoxPassword.Text);
                 am.save("./../../../Users.txt");
                 System.Windows.Forms.MessageBox.Show("Votre compte à bien été créé !", textBoxLogin.Text);

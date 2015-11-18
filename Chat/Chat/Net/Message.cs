@@ -31,7 +31,7 @@ namespace Net
 
         public override String ToString()
         {
-            return head.ToString() + "\n" + data + "\n";
+            return head.ToString() + data;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

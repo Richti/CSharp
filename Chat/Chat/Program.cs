@@ -1,29 +1,53 @@
-﻿using System;
+﻿using AuthentificationN;
+using Chat;
+using Client;
+using Net;
+using Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using Chat;
-using AuthentificationN;
-using Net;
 using System.Net;
-using Server;
-using Client;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 class Program
 {
+    //Coté serveur
+    private static ServerGestTopics serverGestionTopics;
+    private static int port = 55555;
+    private static IPAddress Ip = IPAddress.Parse("127.0.0.1");
+
     public static void Main()
     {
        Application.EnableVisualStyles();
        Application.SetCompatibleTextRenderingDefault(false);
-       User U1 = new User("Vuitton", "Louis");
-       Application.Run(new InfoUser(U1));
-     // Application.Run(new Connexion());
+        launcherServer();
+        Application.Run(new InfoUser(new User ("Vuitton","Louis")));
     }
 
-    public void test()
+    public static void launcherServer()
+    {
+        try
+        {
+            serverGestionTopics = new ServerGestTopics(Ip);
+            ParameterizedThreadStart ts = new ParameterizedThreadStart(serverGestionTopics.startServer);
+            Thread t = new Thread(ts);
+            t.Start(port);
+            Console.WriteLine("Serveur lancé !" + Environment.NewLine);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Le serveur s'est mal lancé");
+        }    
+    }
+
+
+
+
+
+public void test()
     {
 
 

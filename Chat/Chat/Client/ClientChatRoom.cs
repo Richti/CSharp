@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Chat;
 using System.Threading;
 
+
 namespace Client
 {
     class ClientChatRoom : TCPClient, IChatroom
@@ -15,6 +16,7 @@ namespace Client
         public IChatter chatter { get; set; }
         public String topic { get; set; }
         public bool doRun { get; set; }
+        public InfoUser infoUser { get; set; }
 
         public ClientChatRoom(IPAddress Ip, int port,String topic) : base (Ip,port)
         {
@@ -55,7 +57,7 @@ namespace Client
             while(doRun)
             {
                 Message message = getMessage();
-                Console.WriteLine(message); // à modifier plus tard
+                infoUser.setTextBox(infoUser.getTextBoxConv().Text + Environment.NewLine + message.ToString());
             }
         }   
     }

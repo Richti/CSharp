@@ -34,6 +34,7 @@ namespace Chat
 
         public void post(string msg, IChatter c)
         {
+            
             lock (textChatters)
             {
                 foreach (IChatter chatter in textChatters)
@@ -49,6 +50,7 @@ namespace Chat
             {
                 textChatters.Remove(c);
             }
+            Console.Write("Déconnexion de : " + c.getAlias());
         }
     }
 }

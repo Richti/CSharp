@@ -25,7 +25,7 @@ namespace Net
 
         public override string ToString()
         {
-            return "Sender : " + sender + " at " + date;
+            return "["+ date.Hour + ":" + date.Minute + ":" + date.Second + "] " + "<" + sender + "> ";
         }
     }
 }

@@ -75,7 +75,7 @@ namespace Net
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.StackTrace);
+                        Console.WriteLine("Error : " + e.StackTrace);
                     }
                 }
             }   

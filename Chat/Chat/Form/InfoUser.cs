@@ -19,14 +19,14 @@ namespace Chat
     public partial class InfoUser : Form
     {
         private User utilisateur;
-        private TextChatter chatter;
-        private IChatroom iChat;
-         
-        private ServerGestTopics server;
+        private IChatter chatter;
+        private IChatroom iChatRoom;
+
         private IPAddress Ip = IPAddress.Parse("127.0.0.1");
         private int port = 55555;
         
         private ClientGestTopics clientGT;
+
 
         public InfoUser(User U1)
         {
@@ -35,6 +35,19 @@ namespace Chat
             splitContainer1.SplitterDistance = 128; //Permet de bien placer ce pu*ain de séparteur...
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Remove(tabPage3); // cache la tabpage
+        }
+        
+
+        public void connexion()
+        {
+            clientGT = new ClientGestTopics(Ip, port);
+            Thread test1 = new Thread(new ThreadStart(clientGT.connect));
+            test1.Start();
+        }
+
+        public String[] listTopic(String topics)
+        {
+            return topics.Split(';');
         }
 
         private void InfoUser_Load(object sender, EventArgs e)
@@ -47,7 +60,6 @@ namespace Chat
 
         private void buttonDéco_Click(object sender, EventArgs e)
         {
-            server.stopServer();
             Application.Exit();
         }
 
@@ -61,29 +73,21 @@ namespace Chat
             else
             {
                 if (tabControl1.TabPages.Count <= 1)
-                {
-                    try
-                    {
-                        launcherServer();
-                        labelStartServeur.Text = "Etat du Server : ON";
-
-                    }
-                    catch (Exception)
-                    {
-                        labelStartServeur.Text = "Error lors du lancement du serveur !";
-                    }
-
-                    chatter = new TextChatter(textBoxAlias.Text);
-                    labelAlias.Text = "Ton alias est : " + chatter.alias;
-                    labelAlias.Show();
-
+                {   
+                    connexion(); // Connexion au server
+                    chatter = new TextChatter(textBoxAlias.Text); //Mise en place du chatter
+                   
                     //Interface
-                    Text = "Enjoy " + chatter.alias + " !";
+                    labelAlias.Text = "Ton alias est : " + chatter.getAlias();
+                    labelAlias.Show();                    
+                    Text = "Enjoy " + chatter.getAlias() + " !";
                     tabControl1.TabPages.Insert(1, tabPage2);
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
+
+
                 }
                 else if(tabControl1.TabPages.Count >1)
-                        {
+                {
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
                 }
             }
@@ -98,14 +102,21 @@ namespace Chat
             }
             else
             {
-                connexion();
-                clientGT.createTopic(textBoxNomSalon.Text);
+                try {
+                    //Client
+                    clientGT.createTopic(textBoxNomSalon.Text);
+                    String[] topics = listTopic(clientGT.listTopics());
 
-                labelSalonCréer.Text = "Votre salon " + textBoxNomSalon.Text + " a été créer avec succès !";
-                labelSalonCréer.Show();
-
-                comboBox1.Items.Add(server.listTopics());
-                comboBox1.Text = textBoxNomSalon.Text;
+                    //Interface
+                    labelSalonCréer.Text = "Votre salon " + textBoxNomSalon.Text + " a été créer avec succès !";
+                    labelSalonCréer.Show();
+                    comboBox1.Items.Add(topics[topics.Count() - 1]); //Faudra accéder au dernier élement de la liste...
+                    comboBox1.Text = topics[topics.Count() - 1];
+                }
+                catch(Exception)
+                {
+                    comboBox1.Text = "Ce topic existe déjà !";
+                }
             }
 
         }
@@ -124,6 +135,7 @@ namespace Chat
             {
                 labelErrorCreaSal.Text = "Merci de choisir un salon parmi la liste !";
                 labelErrorCreaSal.Show();
+                
             }
             else
             {
@@ -134,10 +146,12 @@ namespace Chat
                     tabPage3.Text = "Salon : " + comboBox1.Text;                   
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"];
 
-                    iChat = server.joinTopic(comboBox1.Text);
-                    iChat.join(chatter);
-                    textBoxConv.Text = "(Message from Chatroom : " + iChat.getTopic() + ") " + chatter.alias + " has join the room";
-                    }
+                    //Local
+                    iChatRoom = clientGT.joinTopic(comboBox1.Text);
+                    iChatRoom.join(chatter);
+                    ((ClientChatRoom)iChatRoom).infoUser = this;
+                    textBoxConv.Text = "(Message from Chatroom : " + iChatRoom.getTopic() + ") " + chatter.getAlias() + " has join the room"; // à modifier
+                }
                  else
                 {
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage1"];
@@ -147,33 +161,36 @@ namespace Chat
             }
         }
 
+        public void setTextBox(String msg)
+        {
+            if(textBoxConv.InvokeRequired)
+            {
+                dSetTexBox d = new dSetTexBox(setTextBox);
+                Invoke(d, new object[] { msg });
+
+            }
+            else
+            {
+                textBoxConv.Text = msg;
+            }
+        }
+        delegate void dSetTexBox(string msg);
+
        
         private void buttonEnvoyer_Click(object sender, EventArgs e)
         {
-            iChat.post(textBoxConv.Text, chatter);
-            textBoxConv.Text += Environment.NewLine + richTextBoxMsg.Text;
+            //Client
+            iChatRoom.post(richTextBoxMsg.Text, chatter);
             richTextBoxMsg.Text = "";
         }
-
-        public bool launcherServer()
-        {
-            server = new ServerGestTopics(Ip);
-            ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
-            Thread t = new Thread(ts);
-            t.Start(port);
-            return true;
-        }
-
-        public void connexion()
-        {
-            clientGT = new ClientGestTopics(Ip, port);
-            Thread test1 = new Thread(new ThreadStart(clientGT.connect));
-            test1.Start();
-        }
-
+        
         private void buttonQuitter_Click(object sender, EventArgs e)
         {
-            iChat.quit(chatter);
+            iChatRoom.quit(chatter);
+
+            //Interface
+            tabControl1.TabPages.Remove(tabPage3);
+            tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
         }
     }
 }

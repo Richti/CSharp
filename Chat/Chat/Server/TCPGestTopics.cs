@@ -26,12 +26,12 @@ namespace Server
             this.ip = ip;
         }
 
-        public void createTopic(string name) 
+        public void createTopic(string name)
         {
             lock(topicsChatRoom)
             {
                 if (topicsChatRoom.Contains(name))
-                {
+                {                    
                     throw new Exception("The topic exists already"); // à modifier
                 }
                 else
@@ -71,7 +71,7 @@ namespace Server
                 String topicsList = "";
                 foreach (string topic in topics)
                 {
-                    topicsList += topic + ",";
+                    topicsList += topic + ";";
                 }
                 return topicsList.Substring(0, topicsList.Length - 1); ; // to remove the last comma
             }      

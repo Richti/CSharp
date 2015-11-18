@@ -54,7 +54,7 @@ namespace Chat
                 topicsList = "";
                 foreach (string topic in topics)
                 {
-                    topicsList += topic + ",";
+                    topicsList += topic + ";";
                 }
                 return topicsList.Substring(0, topicsList.Length - 1); ; // to remove the last comma
             }
