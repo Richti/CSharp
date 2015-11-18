@@ -41,7 +41,7 @@ namespace Net
             this.port = (int) port; 
             waitSocket = new TcpListener(ip, this.port);
             waitSocket.Start();
-            run();
+                run();           
         }
 
         public void stopServer()
@@ -51,11 +51,10 @@ namespace Net
         }
 
         public void run()
-        {
-
-            if(treatClient)
+        { 
+            if (treatClient)
             {
-                 gereClient(commSock);
+                gereClient(commSock);
             }
             else
             {
@@ -68,17 +67,17 @@ namespace Net
                         commSock = waitSocket.AcceptTcpClient();
                         Console.WriteLine("Connexion établit");
 
-                        TCPServer myClone = (TCPServer)Clone(); 
+                        TCPServer myClone = (TCPServer)Clone();
                         myClone.treatClient = true;
                         Thread newClient = new Thread(new ThreadStart(myClone.run));
-                        newClient.Start(); 
+                        newClient.Start();
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.StackTrace);
                     }
                 }
-            }   
+            }            
         }
 
         abstract public void gereClient(TcpClient comm);

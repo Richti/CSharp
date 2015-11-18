@@ -10,71 +10,87 @@ namespace AuthentificationN
     class Authentification : AuthentificationManager
     {
         public List<User> users { get; set; }
+
         public Authentification()
         {
             users = new List<User>();
         }
         
-
         public void addUser(string login, string password) 
-        {
-           
-                if(users.Contains(new User(login,password))) 
+        { 
+            lock(users)
+            {
+                if (users.Contains(new User(login, password)))
                 {
-                    throw new UserExistsException(login);       
-                }          
-                users.Add(new User(login, password));         
+                    throw new UserExistsException(login);
+                }
+                users.Add(new User(login, password));
+            }       
         }
         
         public void removeUser(string login) 
         {
-            for(int i = 0; i < users.Count; i++)
+            lock (users)
             {
-                if (users[i].Equals(login))
+                for (int i = 0; i < users.Count; i++)
                 {
-                    users.RemoveAt(i);
-                    return;
+                    if (users[i].Equals(login))
+                    {
+                        users.RemoveAt(i);
+                        return;
+                    }
                 }
-            }
-            throw new UserUnknownException(login);
-           
+                throw new UserUnknownException(login);
+            }   
         }
 
         public void authentify(string login, string password)
         {
-            for (int i = 0; i < users.Count; i++)
+            lock(users)
             {
-                if (users[i].Equals(login))
+                foreach (User user in users)
                 {
-                    if(!users[i].password.Equals(password)) {
-                        throw new WrongPasswordException(login);
+                    if (user.Equals(login))
+                    {
+                        if (!user.password.Equals(password))
+                        {
+                            throw new WrongPasswordException(login);
+                        }
+                        return;
                     }
-                    return;
                 }
-            }
-            throw new UserUnknownException(login);     
+                throw new UserUnknownException(login);
+            }                
         }
 
         public void load(string path)
         {
-           StreamReader sr = new StreamReader(path);
-           string line;
-           while ((line = sr.ReadLine()) != null)
-           {
-               string[] loginPassword = line.Split(';');
-               addUser(loginPassword[0], loginPassword[1]);
-           }
-           sr.Close();
+            lock(users)
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] loginPassword = line.Split(';');
+                        addUser(loginPassword[0], loginPassword[1]);
+                    }
+                }
+            }
         }
 
         public void save(string path)
         {
-           StreamWriter sw = new StreamWriter(path);
-           foreach(User user in users)
-           {
-               sw.WriteLine(user.login + ";" + user.password);
-           }
-           sw.Close();
+            lock(users)
+            {
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    foreach (User user in users)
+                    {
+                        sw.WriteLine(user.login + ";" + user.password);
+                    }
+                }
+            }
         }
 
     }

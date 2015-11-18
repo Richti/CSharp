@@ -50,7 +50,7 @@ namespace Net
         }
         public void sendMessage(Message m) 
         {
-            Message.send(m, ns);
+                Message.send(m, ns); 
         }
     }
 }
