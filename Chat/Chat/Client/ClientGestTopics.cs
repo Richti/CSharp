@@ -11,7 +11,7 @@ using AuthentificationN;
 
 namespace Client
 {
-    class ClientGestTopics : TCPClient, ITopicsManager
+    public class ClientGestTopics : TCPClient, ITopicsManager
     {
         
         public ClientGestTopics(IPAddress Ip, int port) : base (Ip,port)
@@ -78,7 +78,7 @@ namespace Client
                     case ErrorType.WRONG_PWD:
                         throw new WrongPasswordException(replyData[1]);
                     case ErrorType.TOPIC_EXISTING:
-                        throw new TopicExistsException(replyData[1]); 
+                        throw new TopicExistsException(replyData[1]);
                     default:
                         throw new Exception(replyData[1]);
                 }

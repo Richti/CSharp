@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Net
 {
-    class TCPClient : MessageConnection
+    public class TCPClient : MessageConnection
     {
         public TcpClient commSock { get; set; }
         public IPAddress Ip { get; set; }

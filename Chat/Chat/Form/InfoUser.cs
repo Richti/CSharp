@@ -20,13 +20,8 @@ namespace Chat
     {
         private User utilisateur;
         private IChatter chatter;
-        private IChatroom iChatRoom;
-
-        private IPAddress Ip = IPAddress.Parse("127.0.0.1");
-        private int port = 55555;
-        
-        private ClientGestTopics clientGT;
-
+        private IChatroom iChatRoom;        
+        public ClientGestTopics clientGT { get; set; }
 
         public InfoUser(User U1)
         {
@@ -35,15 +30,7 @@ namespace Chat
             splitContainer1.SplitterDistance = 128; //Permet de bien placer ce pu*ain de séparteur...
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Remove(tabPage3); // cache la tabpage
-        }
-        
-
-        public void connexion()
-        {
-            clientGT = new ClientGestTopics(Ip, port);
-            Thread test1 = new Thread(new ThreadStart(clientGT.connect));
-            test1.Start();
-        }
+        }        
 
         public String[] listTopic(String topics)
         {
@@ -74,7 +61,6 @@ namespace Chat
             {
                 if (tabControl1.TabPages.Count <= 1)
                 {   
-                    connexion(); // Connexion au server
                     chatter = new TextChatter(textBoxAlias.Text); //Mise en place du chatter
                    
                     //Interface
@@ -93,7 +79,7 @@ namespace Chat
             }
         }
         
-        private void buttonValiderSalon_Click(object sender, EventArgs e)
+        private void buttonValiderSalon_Click(object sender, EventArgs e) // Ne fonctionne pas!
         {
             if (textBoxNomSalon.Text == "")
             {
@@ -102,7 +88,8 @@ namespace Chat
             }
             else
             {
-                try {
+                try
+                {
                     //Client
                     clientGT.createTopic(textBoxNomSalon.Text);
                     String[] topics = listTopic(clientGT.listTopics());
@@ -110,12 +97,13 @@ namespace Chat
                     //Interface
                     labelSalonCréer.Text = "Votre salon " + textBoxNomSalon.Text + " a été créer avec succès !";
                     labelSalonCréer.Show();
-                    comboBox1.Items.Add(topics[topics.Count() - 1]); //Faudra accéder au dernier élement de la liste...
-                    comboBox1.Text = topics[topics.Count() - 1];
+                    comboBox1.Items.Add(topics[0]); 
+                    comboBox1.Text = topics[0];
                 }
-                catch(Exception)
+                catch(TopicExistsException)
                 {
-                    comboBox1.Text = "Ce topic existe déjà !";
+                    labelSalonCréer.Text = "Le salon nommé " + textBoxNomSalon.Text + " existe déjà!";
+                    labelSalonCréer.Show();
                 }
             }
 
@@ -191,6 +179,11 @@ namespace Chat
             //Interface
             tabControl1.TabPages.Remove(tabPage3);
             tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
+        }
+
+        private void labelAlias_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
