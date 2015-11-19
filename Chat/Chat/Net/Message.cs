@@ -42,9 +42,16 @@ namespace Net
 
         public static void send(Message message, NetworkStream stream)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(stream, message);
-            stream.Flush();
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(stream, message);
+                stream.Flush();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }            
         }
 
         public static Message Receive(NetworkStream stream)

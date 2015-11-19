@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Chat;
 using System.Collections;
+using AuthentificationN;
 
 namespace Client
 {
@@ -17,13 +18,28 @@ namespace Client
         {            
         }
 
+        public void addUser(string login, string password)
+        {
+            Message request = new Message(new Header("Client", MessageType.ADD_USER), login + ";" + password);
+            sendMessage(request);
+        }
+        public void removeUser(string login)
+        {
+            Message request = new Message(new Header("Client", MessageType.RM_USER), login);
+            sendMessage(request);           
+        }
+        public void authentify(string login, string password)
+        {
+            Message request = new Message(new Header("Client", MessageType.AUTH_USER), login + ";" + password);
+            sendMessage(request);
+        }
+
         public void createTopic(string name)
         {
             Message request = new Message(new Header("Client", MessageType.CREATE_TOPIC), name);
             sendMessage(request);
             Console.WriteLine("Topic créer | " + request);
         }
-
         public IChatroom joinTopic(string topic)
         {
             Message request = new Message(new Header("Client", MessageType.JOIN_TOPIC), topic);
@@ -34,7 +50,6 @@ namespace Client
             ccr.connect();
             return ccr;
         }
-
         public String listTopics()
         {
             Message request = new Message(new Header("Client", MessageType.LISTE_TOPICS), "");
@@ -42,6 +57,7 @@ namespace Client
             Message reply = getMessage();
             return reply.data;
         }
+
     }
     
 }
