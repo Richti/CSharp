@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
+
 
 namespace Net
 {
@@ -31,7 +31,7 @@ namespace Net
 
         public override String ToString()
         {
-            return head.ToString() + "\n" + data + "\n";
+            return head.ToString() + data;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -42,9 +42,16 @@ namespace Net
 
         public static void send(Message message, NetworkStream stream)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(stream, message);
-            stream.Flush();
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(stream, message);
+                stream.Flush();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }            
         }
 
         public static Message Receive(NetworkStream stream)

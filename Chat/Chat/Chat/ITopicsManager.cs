@@ -8,7 +8,7 @@ namespace Chat
 {
     interface ITopicsManager
     {
-        void listTopics();
+        String listTopics();
         IChatroom joinTopic(string topic);
         void createTopic(string name);
     }

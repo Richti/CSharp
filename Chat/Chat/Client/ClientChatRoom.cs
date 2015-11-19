@@ -5,13 +5,60 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Chat;
+using System.Threading;
 
-namespace Chat.Client
+
+namespace Client
 {
-    class ClientChatRoom : TCPClient
+    class ClientChatRoom : TCPClient, IChatroom
     {
-        public ClientChatRoom(IPAddress Ip, int port) : base (Ip,port)
+        public IChatter chatter { get; set; }
+        public String topic { get; set; }
+        public bool doRun { get; set; }
+        public InfoUser infoUser { get; set; }
+
+        public ClientChatRoom(IPAddress Ip, int port,String topic) : base (Ip,port)
         {
+            this.topic = topic;
+            doRun = true;
         }
+
+        public string getTopic()
+        {
+            return topic;
+        }
+
+        public void join(IChatter chatter)
+        {
+            this.chatter = chatter;
+            Message request = new Message(new Header(chatter.getAlias(), MessageType.JOINCR), "");
+            sendMessage(request);
+            Thread t = new Thread(new ThreadStart(runReceiveMsg));
+            t.Start();
+        }
+
+        public void post(string msg, IChatter c)
+        {
+            Message request = new Message(new Header(c.getAlias(), MessageType.POST), msg);
+            sendMessage(request);
+        }
+
+        public void quit(IChatter c)
+        {
+            Message request = new Message(new Header(c.getAlias(), MessageType.QUITCR), "");
+            sendMessage(request);
+            doRun = false;
+            Console.WriteLine("Quitter : " + request);
+        }
+
+        public void runReceiveMsg() 
+        {
+            while(doRun)
+            {
+                Message message = getMessage();
+                infoUser.setTextBox(infoUser.getTextBoxConv().Text + Environment.NewLine + message.ToString());
+            }
+        }   
     }
 }

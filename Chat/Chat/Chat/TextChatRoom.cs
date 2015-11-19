@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chat
@@ -25,20 +26,31 @@ namespace Chat
         public void join(IChatter c)
         {
             Console.WriteLine("(Message from Chatroom : {0}) {1}  has join the room.", topic,c.getAlias());
-            textChatters.Add(c);
+            lock(textChatters)
+            {
+                textChatters.Add(c);
+            }
         }
 
         public void post(string msg, IChatter c)
         {
-            foreach(TextChatter chatter in textChatters)
+            
+            lock (textChatters)
             {
-                chatter.receiveAMessage(msg, c);
+                foreach (IChatter chatter in textChatters)
+                {
+                    chatter.receiveAMessage(msg, c);
+                }
             }
         }
 
         public void quit(IChatter c)
         {
-            textChatters.Remove(c);
+            lock (textChatters)
+            {
+                textChatters.Remove(c);
+            }
+            Console.Write("Déconnexion de : " + c.getAlias());
         }
     }
 }
