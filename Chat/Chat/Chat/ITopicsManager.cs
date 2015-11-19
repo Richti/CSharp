@@ -12,4 +12,11 @@ namespace Chat
         IChatroom joinTopic(string topic);
         void createTopic(string name);
     }
+
+    class TopicExistsException : Exception 
+    {
+        public TopicExistsException(string message) : base(message)
+        {            
+        }
+    }
 }
