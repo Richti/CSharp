@@ -19,7 +19,7 @@ namespace Server
         {
             concretGT = new TCPGestTopics(ip); // pattern singleton à faire??
             concretAM = new Authentification(); // idem?
-            load("users.txt"); // à modifier
+            load("./../../../Users.txt"); // à modifier
         }
 
         public new void stopServer()
