@@ -24,7 +24,8 @@ class Program
        Application.EnableVisualStyles();
        Application.SetCompatibleTextRenderingDefault(false);
         launcherServer();
-        Application.Run(new InfoUser(new User ("Vuitton","Louis")));
+      //  Application.Run(new Connexion());
+       Application.Run(new InfoUser(new User ("Vuitton","Louis")));
     }
 
     public static void launcherServer()

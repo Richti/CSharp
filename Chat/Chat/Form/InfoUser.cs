@@ -92,7 +92,7 @@ namespace Chat
                 }
             }
         }
-
+        
         private void buttonValiderSalon_Click(object sender, EventArgs e)
         {
             if (textBoxNomSalon.Text == "")

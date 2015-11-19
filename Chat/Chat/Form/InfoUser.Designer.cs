@@ -351,6 +351,7 @@
             // richTextBoxMsg
             // 
             this.richTextBoxMsg.Location = new System.Drawing.Point(41, 321);
+            this.richTextBoxMsg.Multiline = false;
             this.richTextBoxMsg.Name = "richTextBoxMsg";
             this.richTextBoxMsg.Size = new System.Drawing.Size(448, 54);
             this.richTextBoxMsg.TabIndex = 4;
@@ -363,6 +364,7 @@
             this.ClientSize = new System.Drawing.Size(533, 486);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.IsMdiContainer = true;
             this.Name = "InfoUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.InfoUser_Load);
