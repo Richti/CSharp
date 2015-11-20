@@ -19,12 +19,12 @@ namespace Server
         {
             concretGT = new TCPGestTopics(ip); // pattern singleton à faire??
             concretAM = new Authentification(); // idem?
-            load("./../../../Users.txt"); // à modifier
+            load("./../../../Users.txt"); 
         }
 
         public new void stopServer()
         {
-            save("users.txt");
+            save("./../../../Users.txt");
             base.stopServer();           
         }
 
@@ -33,16 +33,18 @@ namespace Server
             ns = comm.GetStream();
              while(comm.Connected)
             {               
-                Message message = getMessage();  
-                          
+                Message message = getMessage();
+                Message reply;
+                try {
                     switch (message.head.type)
                     {
-                        case MessageType.LISTE_TOPICS : 
-                            Message reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), listTopics());
+                        case MessageType.LISTE_TOPICS:
+                            reply = new Message(new Header("Server", MessageType.LISTE_TOPICS_REPLY), listTopics());
                             sendMessage(reply);
                             break;
                         case MessageType.CREATE_TOPIC:
                             createTopic(message.data);
+                            confirm();
                             break;
                         case MessageType.JOIN_TOPIC:
                             IChatroom scr = joinTopic(message.data);
@@ -52,19 +54,56 @@ namespace Server
                             break;
                         case MessageType.ADD_USER:
                             String[] userInfo = message.data.Split(';');
-                                addUser(userInfo[0], userInfo[1]);
+                            addUser(userInfo[0], userInfo[1]);
+                            confirm();
                             break;
                         case MessageType.RM_USER:
-                              removeUser(message.data);
+                            removeUser(message.data);
+                            confirm();
                             break;
                         case MessageType.AUTH_USER:
                             userInfo = message.data.Split(';');
                             authentify(userInfo[0], userInfo[1]);
+                            confirm();
                             break;
                         default:
-                            break; 
+                            break;
                     }
+                }
+                catch (UserUnknownException e)
+                {
+                    sendAuthError(ErrorType.USER_UNKNOWN, e);
+                }
+                catch (UserExistsException e)
+                {
+                    sendAuthError(ErrorType.USER_EXISTING, e);
+                }
+                catch (WrongPasswordException e)
+                {
+                    sendAuthError(ErrorType.WRONG_PWD, e);
+                }
+                catch (TopicExistsException e)
+                {
+                    reply = new Message(new Header("Server", MessageType.ERROR), ErrorType.TOPIC_EXISTING + ";" + e.Message);
+                    sendMessage(reply);
+                }
+                catch (Exception e)
+                {
+                    reply = new Message(new Header("Server", MessageType.ERROR), ErrorType.UNKNOWN_EX + ";" + e.Message);
+                    sendMessage(reply);
+                }
             }
+        }
+
+        private void confirm()
+        {
+            Message reply = new Message(new Header("Server", MessageType.CONFIRM), "");
+            sendMessage(reply);
+        }
+        private void sendAuthError(ErrorType errorType, AuthentificationException e)
+        {
+            Message reply = new Message(new Header("Server", MessageType.ERROR), errorType.ToString() + ";" + e.login);
+            sendMessage(reply);
         }
 
         public override object Clone()

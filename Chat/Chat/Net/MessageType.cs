@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace Net
 {
-    public enum MessageType { POST, JOINCR, QUITCR, RECV_MSG,
+    public enum MessageType
+    {
+        POST, JOINCR, QUITCR, RECV_MSG,
         LISTE_TOPICS, LISTE_TOPICS_REPLY, CREATE_TOPIC, JOIN_TOPIC, JOIN_REPLY,
-        ADD_USER, RM_USER, AUTH_USER }
+        ADD_USER, RM_USER, AUTH_USER,
+        ERROR, CONFIRM
+    }
+
+    public enum ErrorType
+    {
+        TOPIC_EXISTING, USER_EXISTING, WRONG_PWD, USER_UNKNOWN, UNKNOWN_EX
+    }
+
     /*  Application protocol : Value of the type attribut 
 
         Chatroom action :
@@ -29,6 +39,9 @@ namespace Net
         RM_USER (10) : remove a user (data : login)
         AUTH_USER (11) : authentify a user (data : "login;password")
 
+        Exceptions Management :
+        ERROR (12) : send an error to the client (data : ErrorType;message)
+        CONFIRM (13) : send a confirmation to the client when there is no other reply (no data)
     */
 
 }

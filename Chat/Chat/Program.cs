@@ -23,9 +23,10 @@ class Program
     {
        Application.EnableVisualStyles();
        Application.SetCompatibleTextRenderingDefault(false);
-        launcherServer();
-      //  Application.Run(new Connexion());
-       Application.Run(new InfoUser(new User ("Vuitton","Louis")));
+       launcherServer();
+       Application.Run(new Connexion(Ip,port));
+       //Application.Run(new InfoUser(new User ("Vuitton","Louis")));
+       // test();
     }
 
     public static void launcherServer()
@@ -48,44 +49,33 @@ class Program
 
 
 
-public void test()
-    {
+    public static void test()
+    {        
+        IPAddress Ip = IPAddress.Parse("127.0.0.1");
+        int port = 55555;
 
+        ServerGestTopics server = new ServerGestTopics(Ip);
+        ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
+        Thread t = new Thread(ts);
+        t.Start(port);
 
-        // Test des fonctionnalités du chat : OK
-        /*
-        IChatter bob = new TextChatter("Bob");
-        IChatter joe = new TextChatter("Joe");
-        ITopicsManager gt = new TextGestTopics();
-
-        gt.createTopic("java");
-        gt.createTopic("UML");
-        Console.WriteLine(gt.listTopics());
-        gt.createTopic("jeux");
-        Console.WriteLine(gt.listTopics());
-        IChatroom cr = gt.joinTopic("jeux");
-        cr.join(bob);
-        cr.post("Je suis seul ou quoi ?", bob);
-        cr.join(joe);
-        cr.post("Tiens, salut Joe !", bob);
-        cr.post("Toi aussi tu chat sur les forums de jeux pendant les TP,Bob ?", joe);
-        
+        ClientGestTopics client1 = new ClientGestTopics(Ip, port);
+        Thread test1 = new Thread(new ThreadStart(client1.connect));
+        test1.Start();
 
         
-        // Test des fonctionnalitées de l'authentification : OK
+        ClientGestTopics client2 = new ClientGestTopics(Ip, port);
+        Thread test2 = new Thread(new ThreadStart(client2.connect));
+        test2.Start();
 
-        AuthentificationManager am = new Authentification();
 
-        // users management 
-        
         try
         {
-            am.addUser("bob", "123");
-            // am.addUser("bob", "125"); //test la UserExistsException
+            client1.addUser("bob", "123");
             Console.WriteLine("Bob has been added !");
-            am.removeUser("bob");
+            client1.removeUser("bob");
             Console.WriteLine("Bob has been removed !");
-            am.removeUser("bob");
+            client1.removeUser("bob");
             Console.WriteLine("Bob has been removes twice !");
         }
         catch (UserUnknownException e)
@@ -96,18 +86,18 @@ public void test()
         {
             Console.WriteLine(e.login + " has already been added !");
         }
+
+
         
-
-
         // authentification 
-        
+
         try
         {
-            am.addUser("bob", "123");
+            client1.addUser("bob", "123");
             Console.WriteLine("Bob has been added !");
-            am.authentify("bob", "123");
+            client2.authentify("bob", "123");
             Console.WriteLine("Authentification OK !");
-            am.authentify("bob", "456");
+            client2.authentify("bob", "456");
             Console.WriteLine("Invalid password !");
         }
         catch (WrongPasswordException e)
@@ -121,51 +111,41 @@ public void test()
         catch (UserUnknownException e)
         {
             Console.WriteLine(e.login + " : user unknown (enable to remove)!");
-      }
-      
-        
+        }
+
+
         // persistance 
         try
         {
-            am.save("users.txt");
+            server.save("users.txt");
             AuthentificationManager am1 = new Authentification();
             am1.load("users.txt");
             am1.authentify("bob", "123");
             Console.WriteLine("Loading complete !");
         }
-        catch (UserUnknownException e) {
-            Console.WriteLine(e.login +" is unknown ! error during the saving/loading.");
-     } catch (WrongPasswordException e) {
-            Console.WriteLine(e.login+" has provided an invalid password !error during the saving/loading.");
-     } 
-      catch (UserExistsException e)
+        catch (UserUnknownException e)
+        {
+            Console.WriteLine(e.login + " is unknown ! error during the saving/loading.");
+        }
+        catch (WrongPasswordException e)
+        {
+            Console.WriteLine(e.login + " has provided an invalid password !error during the saving/loading.");
+        }
+        catch (UserExistsException e)
         {
             Console.WriteLine(e.login + " has already been added !error during the saving/loading.");
-        }catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Console.WriteLine(e);
-     }
-    */
+        }
+        
+        
+            client1.createTopic("Ruby");
+            client1.createTopic("Java");
+            client2.createTopic("PHP");
+            Console.WriteLine("Topics list : " + client1.listTopics());
 
-        /*
-            IPAddress Ip = IPAddress.Parse("127.0.0.1");
-            int port = 55555;
-
-            ServerGestTopics server = new ServerGestTopics(Ip);
-            ParameterizedThreadStart ts = new ParameterizedThreadStart(server.startServer);
-            Thread t = new Thread(ts);
-            t.Start(port);
-
-            ClientGestTopics client1 = new ClientGestTopics(Ip, port);
-            Thread test1 = new Thread(new ThreadStart(client1.
-            ct));
-            test1.Start();
-
-            ClientGestTopics client2 = new ClientGestTopics(Ip, port);
-            Thread test2 = new Thread(new ThreadStart(client2.connect));
-            test2.Start();
-
-            client1.createTopic("Ruby"); client1.createTopic("Java"); client2.createTopic("PHP");
-            Console.WriteLine("Topics list : " + server.listTopics());
 
             IChatroom cr2 = client2.joinTopic("PHP");
             IChatroom cr1 = client1.joinTopic("PHP");
@@ -180,9 +160,9 @@ public void test()
             cr2.post("Yop", joe);
             cr1.quit(bob);
             cr2.post("Toi aussi tu chat sur les forums de jeux pendant les TP,Bob ?", joe);
+            
 
-            Console.ReadKey(true);
-            */
+
 
     }
 }

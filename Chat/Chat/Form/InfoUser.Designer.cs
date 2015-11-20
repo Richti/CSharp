@@ -66,9 +66,10 @@
             // buttonDéco
             // 
             this.buttonDéco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDéco.Location = new System.Drawing.Point(310, 316);
+            this.buttonDéco.Location = new System.Drawing.Point(207, 205);
+            this.buttonDéco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonDéco.Name = "buttonDéco";
-            this.buttonDéco.Size = new System.Drawing.Size(148, 50);
+            this.buttonDéco.Size = new System.Drawing.Size(99, 32);
             this.buttonDéco.TabIndex = 1;
             this.buttonDéco.Text = "Déconnexion";
             this.buttonDéco.UseVisualStyleBackColor = true;
@@ -77,9 +78,10 @@
             // buttonOk
             // 
             this.buttonOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOk.Location = new System.Drawing.Point(355, 121);
+            this.buttonOk.Location = new System.Drawing.Point(237, 79);
+            this.buttonOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(61, 40);
+            this.buttonOk.Size = new System.Drawing.Size(41, 26);
             this.buttonOk.TabIndex = 5;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
@@ -91,10 +93,11 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 5);
+            this.tabControl1.Location = new System.Drawing.Point(0, 3);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(536, 486);
+            this.tabControl1.Size = new System.Drawing.Size(357, 316);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
@@ -107,10 +110,11 @@
             this.tabPage1.Controls.Add(this.labelStartServeur);
             this.tabPage1.Controls.Add(this.buttonDéco);
             this.tabPage1.Controls.Add(this.buttonOk);
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(528, 448);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(349, 287);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Compte";
             // 
@@ -119,27 +123,31 @@
             this.labelAlias.AutoSize = true;
             this.labelAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAlias.ForeColor = System.Drawing.Color.Red;
-            this.labelAlias.Location = new System.Drawing.Point(79, 200);
+            this.labelAlias.Location = new System.Drawing.Point(53, 130);
+            this.labelAlias.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAlias.Name = "labelAlias";
-            this.labelAlias.Size = new System.Drawing.Size(231, 25);
+            this.labelAlias.Size = new System.Drawing.Size(167, 17);
             this.labelAlias.TabIndex = 12;
             this.labelAlias.Text = "Merci de choisir un alias !";
+            this.labelAlias.Click += new System.EventHandler(this.labelAlias_Click);
             // 
             // textBoxAlias
             // 
             this.textBoxAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAlias.Location = new System.Drawing.Point(161, 126);
+            this.textBoxAlias.Location = new System.Drawing.Point(107, 82);
+            this.textBoxAlias.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxAlias.Name = "textBoxAlias";
-            this.textBoxAlias.Size = new System.Drawing.Size(149, 30);
+            this.textBoxAlias.Size = new System.Drawing.Size(101, 23);
             this.textBoxAlias.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(79, 129);
+            this.label3.Location = new System.Drawing.Point(53, 84);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 25);
+            this.label3.Size = new System.Drawing.Size(38, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Alias";
             // 
@@ -147,9 +155,10 @@
             // 
             this.labelUser.AutoSize = true;
             this.labelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUser.Location = new System.Drawing.Point(79, 51);
+            this.labelUser.Location = new System.Drawing.Point(53, 33);
+            this.labelUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(147, 25);
+            this.labelUser.Size = new System.Drawing.Size(109, 17);
             this.labelUser.TabIndex = 9;
             this.labelUser.Text = "Texte de Prez";
             this.labelUser.Visible = false;
@@ -158,19 +167,21 @@
             // 
             this.labelStartServeur.AutoSize = true;
             this.labelStartServeur.ForeColor = System.Drawing.Color.Red;
-            this.labelStartServeur.Location = new System.Drawing.Point(79, 253);
+            this.labelStartServeur.Location = new System.Drawing.Point(53, 164);
+            this.labelStartServeur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStartServeur.Name = "labelStartServeur";
-            this.labelStartServeur.Size = new System.Drawing.Size(182, 25);
+            this.labelStartServeur.Size = new System.Drawing.Size(132, 17);
             this.labelStartServeur.TabIndex = 8;
             this.labelStartServeur.Text = "Etat du Server : ON";
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.splitContainer1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(528, 448);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(349, 287);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Salons";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -182,7 +193,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 3);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -206,9 +218,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.buttonAccéderSalons);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.splitContainer1.Size = new System.Drawing.Size(522, 445);
-            this.splitContainer1.SplitterDistance = 181;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(348, 289);
+            this.splitContainer1.SplitterDistance = 117;
+            this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
             // 
             // labelSalonCréer
@@ -216,9 +228,10 @@
             this.labelSalonCréer.AutoSize = true;
             this.labelSalonCréer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSalonCréer.ForeColor = System.Drawing.Color.Red;
-            this.labelSalonCréer.Location = new System.Drawing.Point(35, 130);
+            this.labelSalonCréer.Location = new System.Drawing.Point(23, 84);
+            this.labelSalonCréer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSalonCréer.Name = "labelSalonCréer";
-            this.labelSalonCréer.Size = new System.Drawing.Size(211, 25);
+            this.labelSalonCréer.Size = new System.Drawing.Size(151, 17);
             this.labelSalonCréer.TabIndex = 5;
             this.labelSalonCréer.Text = "Message de Validation";
             this.labelSalonCréer.Visible = false;
@@ -227,18 +240,20 @@
             // 
             this.labelCréerSalon.AutoSize = true;
             this.labelCréerSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCréerSalon.Location = new System.Drawing.Point(35, 21);
+            this.labelCréerSalon.Location = new System.Drawing.Point(23, 14);
+            this.labelCréerSalon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCréerSalon.Name = "labelCréerSalon";
-            this.labelCréerSalon.Size = new System.Drawing.Size(168, 26);
+            this.labelCréerSalon.Size = new System.Drawing.Size(119, 18);
             this.labelCréerSalon.TabIndex = 0;
             this.labelCréerSalon.Text = "Créer un salon";
             // 
             // buttonValiderSalon
             // 
             this.buttonValiderSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonValiderSalon.Location = new System.Drawing.Point(346, 73);
+            this.buttonValiderSalon.Location = new System.Drawing.Point(231, 47);
+            this.buttonValiderSalon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonValiderSalon.Name = "buttonValiderSalon";
-            this.buttonValiderSalon.Size = new System.Drawing.Size(104, 42);
+            this.buttonValiderSalon.Size = new System.Drawing.Size(69, 27);
             this.buttonValiderSalon.TabIndex = 3;
             this.buttonValiderSalon.Text = "Créer";
             this.buttonValiderSalon.UseVisualStyleBackColor = true;
@@ -248,27 +263,30 @@
             // 
             this.labelNomSalon.AutoSize = true;
             this.labelNomSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomSalon.Location = new System.Drawing.Point(114, 79);
+            this.labelNomSalon.Location = new System.Drawing.Point(76, 51);
+            this.labelNomSalon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNomSalon.Name = "labelNomSalon";
-            this.labelNomSalon.Size = new System.Drawing.Size(53, 25);
+            this.labelNomSalon.Size = new System.Drawing.Size(37, 17);
             this.labelNomSalon.TabIndex = 1;
             this.labelNomSalon.Text = "Nom";
             // 
             // textBoxNomSalon
             // 
             this.textBoxNomSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNomSalon.Location = new System.Drawing.Point(203, 76);
+            this.textBoxNomSalon.Location = new System.Drawing.Point(135, 49);
+            this.textBoxNomSalon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNomSalon.Name = "textBoxNomSalon";
-            this.textBoxNomSalon.Size = new System.Drawing.Size(100, 30);
+            this.textBoxNomSalon.Size = new System.Drawing.Size(68, 23);
             this.textBoxNomSalon.TabIndex = 2;
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(119, 88);
+            this.comboBox1.Location = new System.Drawing.Point(79, 57);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(145, 33);
+            this.comboBox1.Size = new System.Drawing.Size(98, 24);
             this.comboBox1.TabIndex = 8;
             // 
             // labelErrorCreaSal
@@ -276,18 +294,20 @@
             this.labelErrorCreaSal.AutoSize = true;
             this.labelErrorCreaSal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelErrorCreaSal.ForeColor = System.Drawing.Color.Red;
-            this.labelErrorCreaSal.Location = new System.Drawing.Point(78, 164);
+            this.labelErrorCreaSal.Location = new System.Drawing.Point(52, 107);
+            this.labelErrorCreaSal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelErrorCreaSal.Name = "labelErrorCreaSal";
-            this.labelErrorCreaSal.Size = new System.Drawing.Size(211, 25);
+            this.labelErrorCreaSal.Size = new System.Drawing.Size(151, 17);
             this.labelErrorCreaSal.TabIndex = 5;
             this.labelErrorCreaSal.Text = "Message de Validation";
             this.labelErrorCreaSal.Visible = false;
             // 
             // buttonAccéderSalons
             // 
-            this.buttonAccéderSalons.Location = new System.Drawing.Point(346, 82);
+            this.buttonAccéderSalons.Location = new System.Drawing.Point(231, 53);
+            this.buttonAccéderSalons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAccéderSalons.Name = "buttonAccéderSalons";
-            this.buttonAccéderSalons.Size = new System.Drawing.Size(104, 43);
+            this.buttonAccéderSalons.Size = new System.Drawing.Size(69, 28);
             this.buttonAccéderSalons.TabIndex = 7;
             this.buttonAccéderSalons.Text = "Accéder";
             this.buttonAccéderSalons.UseVisualStyleBackColor = true;
@@ -297,9 +317,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 21);
+            this.label2.Location = new System.Drawing.Point(23, 14);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(184, 26);
+            this.label2.Size = new System.Drawing.Size(131, 18);
             this.label2.TabIndex = 5;
             this.label2.Text = "Liste des salons";
             // 
@@ -310,18 +331,20 @@
             this.tabPage3.Controls.Add(this.textBoxConv);
             this.tabPage3.Controls.Add(this.buttonEnvoyer);
             this.tabPage3.Controls.Add(this.richTextBoxMsg);
-            this.tabPage3.Location = new System.Drawing.Point(4, 34);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(528, 448);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Size = new System.Drawing.Size(349, 287);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Chat";
             // 
             // buttonQuitter
             // 
-            this.buttonQuitter.Location = new System.Drawing.Point(41, 382);
+            this.buttonQuitter.Location = new System.Drawing.Point(27, 248);
+            this.buttonQuitter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonQuitter.Name = "buttonQuitter";
-            this.buttonQuitter.Size = new System.Drawing.Size(107, 37);
+            this.buttonQuitter.Size = new System.Drawing.Size(71, 24);
             this.buttonQuitter.TabIndex = 7;
             this.buttonQuitter.Text = "Quitter";
             this.buttonQuitter.UseVisualStyleBackColor = true;
@@ -331,18 +354,20 @@
             // 
             this.textBoxConv.BackColor = System.Drawing.Color.White;
             this.textBoxConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxConv.Location = new System.Drawing.Point(41, 26);
+            this.textBoxConv.Location = new System.Drawing.Point(27, 17);
+            this.textBoxConv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxConv.Multiline = true;
             this.textBoxConv.Name = "textBoxConv";
             this.textBoxConv.ReadOnly = true;
-            this.textBoxConv.Size = new System.Drawing.Size(448, 264);
+            this.textBoxConv.Size = new System.Drawing.Size(300, 173);
             this.textBoxConv.TabIndex = 6;
             // 
             // buttonEnvoyer
             // 
-            this.buttonEnvoyer.Location = new System.Drawing.Point(203, 381);
+            this.buttonEnvoyer.Location = new System.Drawing.Point(135, 248);
+            this.buttonEnvoyer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonEnvoyer.Name = "buttonEnvoyer";
-            this.buttonEnvoyer.Size = new System.Drawing.Size(114, 38);
+            this.buttonEnvoyer.Size = new System.Drawing.Size(76, 25);
             this.buttonEnvoyer.TabIndex = 5;
             this.buttonEnvoyer.Text = "Envoyer";
             this.buttonEnvoyer.UseVisualStyleBackColor = true;
@@ -350,21 +375,23 @@
             // 
             // richTextBoxMsg
             // 
-            this.richTextBoxMsg.Location = new System.Drawing.Point(41, 321);
+            this.richTextBoxMsg.Location = new System.Drawing.Point(27, 209);
+            this.richTextBoxMsg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richTextBoxMsg.Multiline = false;
             this.richTextBoxMsg.Name = "richTextBoxMsg";
-            this.richTextBoxMsg.Size = new System.Drawing.Size(448, 54);
+            this.richTextBoxMsg.Size = new System.Drawing.Size(300, 36);
             this.richTextBoxMsg.TabIndex = 4;
             this.richTextBoxMsg.Text = "";
             // 
             // InfoUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 486);
+            this.ClientSize = new System.Drawing.Size(355, 316);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "InfoUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.InfoUser_Load);

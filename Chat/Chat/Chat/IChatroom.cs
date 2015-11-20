@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chat
 {
-    interface IChatroom
+    public interface IChatroom
     {
         void post(string msg, IChatter c);
         void quit(IChatter c);
