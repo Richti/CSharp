@@ -12,6 +12,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+// 1 gerer fermeture de l'appli lors de la fermeture de la fenetre!
+// 1 action sur le bouton entrée
+// 1 possibilité de supprimer son compte
+// 1 deconnexion d'un salon
+// 1 deco de la session
+
+// 2 sérialisation authentification
+// 2 Séparer client et serveur??
+
+// 3 gérer les alias : les stockers dans le fichier texte
+// 4 status de connexion pour gérer les multi co!
+// 3 unicité de l'alias
+// 5 WPF
+// 6 Liste des personnes connecté au salon!
+
+
 class Program
 {
     //Coté serveur
@@ -21,11 +37,7 @@ class Program
 
     public static void Main()
     {
-       Application.EnableVisualStyles();
-       Application.SetCompatibleTextRenderingDefault(false);
        launcherServer();
-       Application.Run(new Connexion(Ip,port));
-       //Application.Run(new InfoUser(new User ("Vuitton","Louis")));
        // test();
     }
 

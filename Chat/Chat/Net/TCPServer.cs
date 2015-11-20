@@ -94,10 +94,8 @@ namespace Net
             Message.send(m, ns);
         }
 
-        public virtual object Clone()
-        {
-            return null; 
-        }
+        abstract public object Clone();
+
     }
 }
 

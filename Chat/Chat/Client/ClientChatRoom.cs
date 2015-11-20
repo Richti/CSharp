@@ -57,7 +57,7 @@ namespace Client
             while(doRun)
             {
                 Message message = getMessage();
-                infoUser.setTextBox(infoUser.getTextBoxConv().Text + Environment.NewLine + message.ToString());
+                infoUser.setTextBox(infoUser.getTextBoxConv().Text + message.ToString() + Environment.NewLine);
             }
         }   
     }

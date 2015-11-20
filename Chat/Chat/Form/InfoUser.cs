@@ -79,7 +79,7 @@ namespace Chat
             }
         }
         
-        private void buttonValiderSalon_Click(object sender, EventArgs e) // Ne fonctionne pas!
+        private void buttonValiderSalon_Click(object sender, EventArgs e) 
         {
             if (textBoxNomSalon.Text == "")
             {
@@ -93,12 +93,15 @@ namespace Chat
                     //Client
                     clientGT.createTopic(textBoxNomSalon.Text);
                     String[] topics = listTopic(clientGT.listTopics());
-
                     //Interface
                     labelSalonCréer.Text = "Votre salon " + textBoxNomSalon.Text + " a été créer avec succès !";
                     labelSalonCréer.Show();
-                    comboBox1.Items.Add(topics[0]); 
-                    comboBox1.Text = topics[0];
+                    comboBox1.Items.Clear();
+                    foreach(String topic in topics)
+                    {
+                        comboBox1.Items.Add(topic);
+                    }
+                    comboBox1.Text = topics[topics.Count() - 1];
                 }
                 catch(TopicExistsException)
                 {
@@ -108,6 +111,7 @@ namespace Chat
             }
 
         }
+
 
   
 
@@ -138,7 +142,7 @@ namespace Chat
                     iChatRoom = clientGT.joinTopic(comboBox1.Text);
                     iChatRoom.join(chatter);
                     ((ClientChatRoom)iChatRoom).infoUser = this;
-                    textBoxConv.Text = "(Message from Chatroom : " + iChatRoom.getTopic() + ") " + chatter.getAlias() + " has join the room"; // à modifier
+                    iChatRoom.post(" s'est connecté", chatter); 
                 }
                  else
                 {
@@ -184,6 +188,25 @@ namespace Chat
         private void labelAlias_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+          
+            String[] topics = listTopic(clientGT.listTopics());
+            //Interface
+           
+            comboBox1.Items.Clear();
+            foreach (String topic in topics)
+            {
+                comboBox1.Items.Add(topic);
+            }
+            comboBox1.Text = topics[topics.Count() - 1];
         }
     }
 }

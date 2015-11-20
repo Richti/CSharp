@@ -67,7 +67,7 @@
             // 
             this.buttonDéco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDéco.Location = new System.Drawing.Point(207, 205);
-            this.buttonDéco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonDéco.Margin = new System.Windows.Forms.Padding(2);
             this.buttonDéco.Name = "buttonDéco";
             this.buttonDéco.Size = new System.Drawing.Size(99, 32);
             this.buttonDéco.TabIndex = 1;
@@ -79,7 +79,7 @@
             // 
             this.buttonOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOk.Location = new System.Drawing.Point(237, 79);
-            this.buttonOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonOk.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(41, 26);
             this.buttonOk.TabIndex = 5;
@@ -94,7 +94,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 3);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(357, 316);
@@ -111,9 +111,9 @@
             this.tabPage1.Controls.Add(this.buttonDéco);
             this.tabPage1.Controls.Add(this.buttonOk);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(349, 287);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Compte";
@@ -135,7 +135,7 @@
             // 
             this.textBoxAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAlias.Location = new System.Drawing.Point(107, 82);
-            this.textBoxAlias.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAlias.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxAlias.Name = "textBoxAlias";
             this.textBoxAlias.Size = new System.Drawing.Size(101, 23);
             this.textBoxAlias.TabIndex = 11;
@@ -178,9 +178,9 @@
             // 
             this.tabPage2.Controls.Add(this.splitContainer1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(349, 287);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Salons";
@@ -194,7 +194,7 @@
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 2);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -251,7 +251,7 @@
             // 
             this.buttonValiderSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonValiderSalon.Location = new System.Drawing.Point(231, 47);
-            this.buttonValiderSalon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonValiderSalon.Margin = new System.Windows.Forms.Padding(2);
             this.buttonValiderSalon.Name = "buttonValiderSalon";
             this.buttonValiderSalon.Size = new System.Drawing.Size(69, 27);
             this.buttonValiderSalon.TabIndex = 3;
@@ -274,7 +274,7 @@
             // 
             this.textBoxNomSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNomSalon.Location = new System.Drawing.Point(135, 49);
-            this.textBoxNomSalon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNomSalon.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNomSalon.Name = "textBoxNomSalon";
             this.textBoxNomSalon.Size = new System.Drawing.Size(68, 23);
             this.textBoxNomSalon.TabIndex = 2;
@@ -284,10 +284,12 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(79, 57);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(98, 24);
             this.comboBox1.TabIndex = 8;
+            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // labelErrorCreaSal
             // 
@@ -305,7 +307,7 @@
             // buttonAccéderSalons
             // 
             this.buttonAccéderSalons.Location = new System.Drawing.Point(231, 53);
-            this.buttonAccéderSalons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAccéderSalons.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAccéderSalons.Name = "buttonAccéderSalons";
             this.buttonAccéderSalons.Size = new System.Drawing.Size(69, 28);
             this.buttonAccéderSalons.TabIndex = 7;
@@ -332,9 +334,9 @@
             this.tabPage3.Controls.Add(this.buttonEnvoyer);
             this.tabPage3.Controls.Add(this.richTextBoxMsg);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage3.Size = new System.Drawing.Size(349, 287);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Chat";
@@ -342,7 +344,7 @@
             // buttonQuitter
             // 
             this.buttonQuitter.Location = new System.Drawing.Point(27, 248);
-            this.buttonQuitter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonQuitter.Margin = new System.Windows.Forms.Padding(2);
             this.buttonQuitter.Name = "buttonQuitter";
             this.buttonQuitter.Size = new System.Drawing.Size(71, 24);
             this.buttonQuitter.TabIndex = 7;
@@ -355,7 +357,7 @@
             this.textBoxConv.BackColor = System.Drawing.Color.White;
             this.textBoxConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxConv.Location = new System.Drawing.Point(27, 17);
-            this.textBoxConv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxConv.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxConv.Multiline = true;
             this.textBoxConv.Name = "textBoxConv";
             this.textBoxConv.ReadOnly = true;
@@ -365,7 +367,7 @@
             // buttonEnvoyer
             // 
             this.buttonEnvoyer.Location = new System.Drawing.Point(135, 248);
-            this.buttonEnvoyer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEnvoyer.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEnvoyer.Name = "buttonEnvoyer";
             this.buttonEnvoyer.Size = new System.Drawing.Size(76, 25);
             this.buttonEnvoyer.TabIndex = 5;
@@ -376,7 +378,7 @@
             // richTextBoxMsg
             // 
             this.richTextBoxMsg.Location = new System.Drawing.Point(27, 209);
-            this.richTextBoxMsg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBoxMsg.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxMsg.Multiline = false;
             this.richTextBoxMsg.Name = "richTextBoxMsg";
             this.richTextBoxMsg.Size = new System.Drawing.Size(300, 36);
@@ -391,7 +393,7 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "InfoUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.InfoUser_Load);

@@ -130,11 +130,13 @@ namespace Server
 
         public void addUser(string login, string password)
         {
-                concretAM.addUser(login, password);                       
+            concretAM.addUser(login, password);
+            save("./../../../Users.txt");
         }
         public void removeUser(string login)
         {
-                concretAM.removeUser(login);
+            concretAM.removeUser(login);
+            save("./../../../Users.txt");
         }
         public void authentify(string login, string password)
         {
