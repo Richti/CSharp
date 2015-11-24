@@ -1,4 +1,4 @@
-﻿namespace Chat
+﻿namespace FormN
 {
     partial class InfoUser
     {
@@ -48,11 +48,6 @@
             this.labelErrorCreaSal = new System.Windows.Forms.Label();
             this.buttonAccéderSalons = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.buttonQuitter = new System.Windows.Forms.Button();
-            this.textBoxConv = new System.Windows.Forms.TextBox();
-            this.buttonEnvoyer = new System.Windows.Forms.Button();
-            this.richTextBoxMsg = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -60,7 +55,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDéco
@@ -91,7 +85,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 3);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
@@ -139,6 +132,7 @@
             this.textBoxAlias.Name = "textBoxAlias";
             this.textBoxAlias.Size = new System.Drawing.Size(101, 23);
             this.textBoxAlias.TabIndex = 11;
+            this.textBoxAlias.TextChanged += new System.EventHandler(this.textBoxAlias_TextChanged);
             // 
             // label3
             // 
@@ -278,6 +272,7 @@
             this.textBoxNomSalon.Name = "textBoxNomSalon";
             this.textBoxNomSalon.Size = new System.Drawing.Size(68, 23);
             this.textBoxNomSalon.TabIndex = 2;
+            this.textBoxNomSalon.TextChanged += new System.EventHandler(this.textBoxNomSalon_TextChanged);
             // 
             // comboBox1
             // 
@@ -326,66 +321,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Liste des salons";
             // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.LightSalmon;
-            this.tabPage3.Controls.Add(this.buttonQuitter);
-            this.tabPage3.Controls.Add(this.textBoxConv);
-            this.tabPage3.Controls.Add(this.buttonEnvoyer);
-            this.tabPage3.Controls.Add(this.richTextBoxMsg);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Size = new System.Drawing.Size(349, 287);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Chat";
-            // 
-            // buttonQuitter
-            // 
-            this.buttonQuitter.Location = new System.Drawing.Point(27, 248);
-            this.buttonQuitter.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonQuitter.Name = "buttonQuitter";
-            this.buttonQuitter.Size = new System.Drawing.Size(71, 24);
-            this.buttonQuitter.TabIndex = 7;
-            this.buttonQuitter.Text = "Quitter";
-            this.buttonQuitter.UseVisualStyleBackColor = true;
-            this.buttonQuitter.Click += new System.EventHandler(this.buttonQuitter_Click);
-            // 
-            // textBoxConv
-            // 
-            this.textBoxConv.BackColor = System.Drawing.Color.White;
-            this.textBoxConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxConv.Location = new System.Drawing.Point(27, 17);
-            this.textBoxConv.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxConv.Multiline = true;
-            this.textBoxConv.Name = "textBoxConv";
-            this.textBoxConv.ReadOnly = true;
-            this.textBoxConv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxConv.Size = new System.Drawing.Size(300, 173);
-            this.textBoxConv.TabIndex = 6;
-            this.textBoxConv.TextChanged += new System.EventHandler(this.textBoxConv_TextChanged);
-            // 
-            // buttonEnvoyer
-            // 
-            this.buttonEnvoyer.Location = new System.Drawing.Point(135, 248);
-            this.buttonEnvoyer.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonEnvoyer.Name = "buttonEnvoyer";
-            this.buttonEnvoyer.Size = new System.Drawing.Size(76, 25);
-            this.buttonEnvoyer.TabIndex = 5;
-            this.buttonEnvoyer.Text = "Envoyer";
-            this.buttonEnvoyer.UseVisualStyleBackColor = true;
-            this.buttonEnvoyer.Click += new System.EventHandler(this.buttonEnvoyer_Click);
-            // 
-            // richTextBoxMsg
-            // 
-            this.richTextBoxMsg.Location = new System.Drawing.Point(27, 206);
-            this.richTextBoxMsg.Margin = new System.Windows.Forms.Padding(2);
-            this.richTextBoxMsg.Name = "richTextBoxMsg";
-            this.richTextBoxMsg.Size = new System.Drawing.Size(300, 39);
-            this.richTextBoxMsg.TabIndex = 4;
-            this.richTextBoxMsg.Text = "";
-            // 
             // InfoUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,8 +343,6 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -417,17 +350,13 @@
         #endregion
         private System.Windows.Forms.Button buttonDéco;
         private System.Windows.Forms.Button buttonOk;
-        private System.Windows.Forms.TabControl tabControl1;
+        public System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button buttonEnvoyer;
-        private System.Windows.Forms.RichTextBox richTextBoxMsg;
         private System.Windows.Forms.TextBox textBoxNomSalon;
         private System.Windows.Forms.Label labelNomSalon;
         private System.Windows.Forms.Label labelCréerSalon;
         private System.Windows.Forms.Button buttonValiderSalon;
-        private System.Windows.Forms.TextBox textBoxConv;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonAccéderSalons;
@@ -438,12 +367,8 @@
         private System.Windows.Forms.Label labelSalonCréer;
         private System.Windows.Forms.TextBox textBoxAlias;
         private System.Windows.Forms.Label labelAlias;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button buttonQuitter;
+        public System.Windows.Forms.ComboBox comboBox1;
 
-        
-
-      public System.Windows.Forms.TextBox getTextBoxConv() { return textBoxConv; }
 
     }
 }

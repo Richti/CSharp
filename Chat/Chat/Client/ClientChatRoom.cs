@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Chat;
 using System.Threading;
-
+using FormN;
 
 namespace Client
 {
@@ -16,7 +16,7 @@ namespace Client
         public IChatter chatter { get; set; }
         public String topic { get; set; }
         public bool doRun { get; set; }
-        public InfoUser infoUser { get; set; }
+        public RoomTab room { get; set; } 
 
         public ClientChatRoom(IPAddress Ip, int port,String topic) : base (Ip,port)
         {
@@ -57,7 +57,7 @@ namespace Client
             while(doRun)
             {
                 Message message = getMessage();
-                infoUser.setTextBox(infoUser.getTextBoxConv().Text + message.ToString() + Environment.NewLine);
+                room.setTextBox(room.getTextBoxConv().Text + message.ToString() + Environment.NewLine); 
             }
         }   
     }

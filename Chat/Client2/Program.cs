@@ -2,6 +2,7 @@
 using System.Net;
 using Chat;
 using System.Windows.Forms;
+using FormN;
 
 namespace Client2
 {

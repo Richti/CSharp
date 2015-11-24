@@ -1,4 +1,5 @@
 ﻿using AuthentificationN;
+using Chat;
 using Client;
 using Net;
 using Server;
@@ -14,13 +15,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chat
+namespace FormN
 {
     public partial class InfoUser : Form
     {
         private User utilisateur;
-        private IChatter chatter;
-        private IChatroom iChatRoom;        
+        private IChatter chatter;        
         public ClientGestTopics clientGT { get; set; }
 
         public InfoUser(User U1)
@@ -29,7 +29,6 @@ namespace Chat
             utilisateur = U1;
             splitContainer1.SplitterDistance = 128; //Permet de bien placer ce pu*ain de séparteur...
             tabControl1.TabPages.Remove(tabPage2);
-            tabControl1.TabPages.Remove(tabPage3); // cache la tabpage
         }        
 
         public String[] listTopic(String topics)
@@ -121,7 +120,7 @@ namespace Chat
         }
 
 
-        private void buttonAccéderSalons_Click(object sender, EventArgs e)
+        private void buttonAccéderSalons_Click(object sender, EventArgs e) // A MODIFIER
         {
             if (comboBox1.Text == "" || comboBox1.Text == "Selectionner")
             {
@@ -133,59 +132,19 @@ namespace Chat
             {
                 if (labelStartServeur.Text == "Etat du Server : ON")
                 {
-                    //Mise en forme
-                    tabControl1.TabPages.Insert(2, tabPage3);
-                    tabPage3.Text = "Salon : " + comboBox1.Text;                   
-                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"];
-
-                    //Local
-                    iChatRoom = clientGT.joinTopic(comboBox1.Text);
-                    iChatRoom.join(chatter);
-                    ((ClientChatRoom)iChatRoom).infoUser = this;
+                    IChatroom iChatRoom = clientGT.joinTopic(comboBox1.Text); 
+                    iChatRoom.join(chatter); 
+                    ((ClientChatRoom)iChatRoom).room = new RoomTab(this,iChatRoom); 
                     iChatRoom.post(" s'est connecté", chatter); 
                 }
                  else
                 {
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage1"];
-                    System.Windows.Forms.MessageBox.Show("Merci de lancer le serveur !", "Aucun server lancé");
+                    MessageBox.Show("Merci de lancer le serveur !", "Aucun server lancé");
                     labelStartServeur.Text = "Merci de lancer le serveur !";
                 }
             }
-        }
-
-        public void setTextBox(String msg)
-        {
-            if(textBoxConv.InvokeRequired)
-            {
-                dSetTexBox d = new dSetTexBox(setTextBox);
-                Invoke(d, new object[] { msg });
-
-            }
-            else
-            {
-                textBoxConv.Text = msg;
-            }
-        }
-        delegate void dSetTexBox(string msg);
-
-       
-        private void buttonEnvoyer_Click(object sender, EventArgs e)
-        {
-            //Client
-            if(richTextBoxMsg.Text != "")
-            {
-                iChatRoom.post(richTextBoxMsg.Text, chatter);
-                richTextBoxMsg.Text = "";
-            }
-        }
-        
-        private void buttonQuitter_Click(object sender, EventArgs e)
-        {
-            iChatRoom.quit(chatter);
-            //Interface
-            tabControl1.TabPages.Remove(tabPage3);
-            tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
-        }
+        }        
 
         private void labelAlias_Click(object sender, EventArgs e)
         {
@@ -211,7 +170,13 @@ namespace Chat
             comboBox1.Text = topics[topics.Count() - 1];
         }
 
-        private void textBoxConv_TextChanged(object sender, EventArgs e)
+
+        private void textBoxAlias_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNomSalon_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -13,7 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chat
+namespace FormN
 {
     public partial class Connexion : Form
     {
