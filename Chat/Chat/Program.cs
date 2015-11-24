@@ -12,13 +12,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// 1 gerer fermeture de l'appli lors de la fermeture de la fenetre!
+// 0 Régler problème : plusieurs salons
+// 1 probleme de scrolling!
+// 1 gerer fermeture de l'appli lors de la fermeture de la fenetre! 
 // 1 action sur le bouton entrée
 // 1 possibilité de supprimer son compte
 // 1 deconnexion d'un salon
 // 1 deco de la session
 
-// 2 sérialisation authentification
 // 2 Séparer client et serveur??
 
 // 3 gérer les alias : les stockers dans le fichier texte
@@ -38,7 +39,7 @@ class Program
     public static void Main()
     {
        launcherServer();
-       // test();
+        //test();
     }
 
     public static void launcherServer()
@@ -51,9 +52,9 @@ class Program
             t.Start(port);
             Console.WriteLine("Serveur lancé !" + Environment.NewLine);
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            Console.WriteLine("Le serveur s'est mal lancé");
+            Console.WriteLine(e.Message);
         }    
     }
 

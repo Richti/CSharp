@@ -92,5 +92,13 @@ namespace Chat
         {
 
         }
+
+        private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                buttonConnexion_Click(sender, e);
+            }
+        }
     }
 }

@@ -29,18 +29,10 @@ namespace Net
             this.port = port;
         }
 
-        public void connect() // à modifier
+        public void connect() 
         {
-            try
-            {
-                commSock.Connect(Ip, port);
-                ns = commSock.GetStream();
-                Console.WriteLine("Connecté");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }   
+            commSock.Connect(Ip, port);
+            ns = commSock.GetStream(); 
         }
 
         public Message getMessage() 

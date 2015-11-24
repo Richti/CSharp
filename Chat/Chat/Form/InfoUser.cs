@@ -172,14 +172,16 @@ namespace Chat
         private void buttonEnvoyer_Click(object sender, EventArgs e)
         {
             //Client
-            iChatRoom.post(richTextBoxMsg.Text, chatter);
-            richTextBoxMsg.Text = "";
+            if(richTextBoxMsg.Text != "")
+            {
+                iChatRoom.post(richTextBoxMsg.Text, chatter);
+                richTextBoxMsg.Text = "";
+            }
         }
         
         private void buttonQuitter_Click(object sender, EventArgs e)
         {
             iChatRoom.quit(chatter);
-
             //Interface
             tabControl1.TabPages.Remove(tabPage3);
             tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
@@ -207,6 +209,11 @@ namespace Chat
                 comboBox1.Items.Add(topic);
             }
             comboBox1.Text = topics[topics.Count() - 1];
+        }
+
+        private void textBoxConv_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

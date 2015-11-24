@@ -361,8 +361,10 @@
             this.textBoxConv.Multiline = true;
             this.textBoxConv.Name = "textBoxConv";
             this.textBoxConv.ReadOnly = true;
+            this.textBoxConv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxConv.Size = new System.Drawing.Size(300, 173);
             this.textBoxConv.TabIndex = 6;
+            this.textBoxConv.TextChanged += new System.EventHandler(this.textBoxConv_TextChanged);
             // 
             // buttonEnvoyer
             // 
@@ -377,11 +379,10 @@
             // 
             // richTextBoxMsg
             // 
-            this.richTextBoxMsg.Location = new System.Drawing.Point(27, 209);
+            this.richTextBoxMsg.Location = new System.Drawing.Point(27, 206);
             this.richTextBoxMsg.Margin = new System.Windows.Forms.Padding(2);
-            this.richTextBoxMsg.Multiline = false;
             this.richTextBoxMsg.Name = "richTextBoxMsg";
-            this.richTextBoxMsg.Size = new System.Drawing.Size(300, 36);
+            this.richTextBoxMsg.Size = new System.Drawing.Size(300, 39);
             this.richTextBoxMsg.TabIndex = 4;
             this.richTextBoxMsg.Text = "";
             // 
