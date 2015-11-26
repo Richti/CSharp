@@ -77,6 +77,7 @@ namespace Server
         public void quit(IChatter c)
         {
             concretCR.quit(c);
+            post(" s'est déconnecté(e).", c);
         }
 
         public void join(IChatter c)

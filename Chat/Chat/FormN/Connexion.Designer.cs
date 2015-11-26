@@ -47,7 +47,6 @@
             this.labelLogin.Size = new System.Drawing.Size(38, 15);
             this.labelLogin.TabIndex = 0;
             this.labelLogin.Text = "Login";
-            this.labelLogin.Click += new System.EventHandler(this.labelLogin_Click);
             // 
             // labelPassword
             // 
@@ -59,7 +58,6 @@
             this.labelPassword.Size = new System.Drawing.Size(61, 15);
             this.labelPassword.TabIndex = 1;
             this.labelPassword.Text = "Password";
-            this.labelPassword.Click += new System.EventHandler(this.labelPassword_Click);
             // 
             // textBoxLogin
             // 
@@ -69,7 +67,6 @@
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(105, 23);
             this.textBoxLogin.TabIndex = 2;
-            this.textBoxLogin.TextChanged += new System.EventHandler(this.textBoxLogin_TextChanged);
             // 
             // textBoxPassword
             // 
@@ -80,7 +77,6 @@
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(105, 23);
             this.textBoxPassword.TabIndex = 3;
-            this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             this.textBoxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPassword_KeyDown);
             // 
             // buttonConnexion

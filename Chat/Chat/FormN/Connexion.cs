@@ -28,22 +28,6 @@ namespace FormN
             test1.Start();
         }
 
-
-
-        private void Connexion_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void labelLogin_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelPassword_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonConnexion_Click(object sender, EventArgs e)
         {
             try {
@@ -65,7 +49,7 @@ namespace FormN
             }
         }
 
-        private void buttonCréer_Click(object sender, EventArgs e) // erreur : vérifié la saisie et mdp avec taille mini ?
+        private void buttonCréer_Click(object sender, EventArgs e) 
         {
             try {
                 if (textBoxLogin.Text == "")
@@ -88,10 +72,6 @@ namespace FormN
             }
         }
 
-        private void textBoxLogin_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
         {
@@ -101,7 +81,7 @@ namespace FormN
             }
         }
 
-        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        private void Connexion_Load(object sender, EventArgs e)
         {
 
         }

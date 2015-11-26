@@ -49,15 +49,22 @@ namespace Client
             Message request = new Message(new Header(c.getAlias(), MessageType.QUITCR), "");
             sendMessage(request);
             doRun = false;
-            Console.WriteLine("Quitter : " + request);
         }
 
         public void runReceiveMsg() 
         {
             while(doRun)
             {
-                Message message = getMessage();
-                room.setTextBox(room.getTextBoxConv().Text + message.ToString() + Environment.NewLine);
+                try
+                {
+                    Message message = getMessage();
+                    room.setTextBox(room.getTextBoxConv().Text + message.ToString() + Environment.NewLine);
+                }
+                catch(Exception)
+                {
+                    post(" s'est déconnecté(e).", chatter); // ne fonctionne pas!
+                    doRun = false;
+                }
             }
         }   
     }

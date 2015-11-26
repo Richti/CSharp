@@ -27,7 +27,7 @@ namespace FormN
         {
             InitializeComponent();
             utilisateur = U1;
-            splitContainer1.SplitterDistance = 128; //Permet de bien placer ce pu*ain de séparteur...
+            splitContainer1.SplitterDistance = 128; 
             tabControl1.TabPages.Remove(tabPage2);
         }        
 

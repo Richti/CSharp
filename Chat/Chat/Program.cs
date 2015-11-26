@@ -13,7 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-// 1 gerer fermeture de l'appli lors de la fermeture de la fenetre! 
+// 0 deconnexion non visible lors d'une deco sauvage :/
+
+
 // 1 possibilité de supprimer son compte
 // 1 deco de la session
 
@@ -28,7 +30,6 @@ using System.Windows.Forms;
 
 class Program
 {
-    //Coté serveur
     private static ServerGestTopics serverGestionTopics;
     private static int port = 55555;
     private static IPAddress Ip = IPAddress.Parse("127.0.0.1");
@@ -47,7 +48,6 @@ class Program
             ParameterizedThreadStart ts = new ParameterizedThreadStart(serverGestionTopics.startServer);
             Thread t = new Thread(ts);
             t.Start(port);
-            Console.WriteLine("Serveur lancé !" + Environment.NewLine);
         }
         catch (Exception e)
         {

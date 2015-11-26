@@ -127,12 +127,9 @@ namespace FormN
             buttonQuitter.Click += new System.EventHandler(this.buttonQuitter_Click);
         }
 
-
-
-
         private void buttonQuitter_Click(object sender, EventArgs e)
         {
-            iChatRoom.quit(((ClientChatRoom)iChatRoom).chatter); 
+            iChatRoom.quit(((ClientChatRoom)iChatRoom).chatter);
             infoUser.tabControl1.TabPages.Remove(this);
             infoUser.tabControl1.SelectedTab = infoUser.tabControl1.TabPages["tabPage2"];
         }
@@ -155,7 +152,5 @@ namespace FormN
             }
             e.Handled=true;
         }
-
-
     }
 }
