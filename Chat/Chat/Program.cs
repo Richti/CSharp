@@ -12,12 +12,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// 0 Régler problème : plusieurs salons
-// 1 probleme de scrolling!
+
 // 1 gerer fermeture de l'appli lors de la fermeture de la fenetre! 
-// 1 action sur le bouton entrée
 // 1 possibilité de supprimer son compte
-// 1 deconnexion d'un salon
 // 1 deco de la session
 
 // 2 Séparer client et serveur??

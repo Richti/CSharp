@@ -100,5 +100,10 @@ namespace FormN
                 buttonConnexion_Click(sender, e);
             }
         }
+
+        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace FormN 
 {
     public class RoomTab : TabPage
     {
         private InfoUser infoUser;
         private IChatroom iChatRoom;
+
         private Button buttonQuitter = new Button();
         private TextBox textBoxConv = new TextBox();
         private Button buttonEnvoyer = new Button();
@@ -49,7 +51,10 @@ namespace FormN
             else
             {
                 textBoxConv.Text = msg;
+                textBoxConv.SelectionStart = textBoxConv.TextLength;
+                textBoxConv.ScrollToCaret();
             }
+
         }
         delegate void dSetTexBox(string msg);
 
@@ -61,6 +66,7 @@ namespace FormN
             richTextBoxMsg.Size = new System.Drawing.Size(300, 39);
             richTextBoxMsg.TabIndex = 4;
             richTextBoxMsg.Text = "";
+            richTextBoxMsg.KeyDown += new KeyEventHandler(richTextBoxMsg_KeyDown);
         }
 
         private void initButtonEnvoyer()
@@ -132,12 +138,24 @@ namespace FormN
         }
 
         private void buttonEnvoyer_Click(object sender, EventArgs e)
-        {
-            if (richTextBoxMsg.Text != "")
+        {           
+            if (richTextBoxMsg.Text != "" && richTextBoxMsg.Text != "\n")
             {
                 iChatRoom.post(richTextBoxMsg.Text, ((ClientChatRoom)iChatRoom).chatter);
-                richTextBoxMsg.Text = "";
             }
+            richTextBoxMsg.Clear();
+            richTextBoxMsg.Focus();
         }
+
+        private void richTextBoxMsg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonEnvoyer_Click(sender, e);
+            }
+            e.Handled=true;
+        }
+
+
     }
 }
