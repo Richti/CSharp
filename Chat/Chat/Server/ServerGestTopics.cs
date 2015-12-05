@@ -19,12 +19,12 @@ namespace Server
         {
             concretGT = new TCPGestTopics(ip); // pattern singleton à faire??
             concretAM = new Authentification(); // idem?
-            load("./../../../Users.txt"); 
+            load("./../../../Users.bin"); 
         }
 
         public new void stopServer()
         {
-            save("./../../../Users.txt");
+            save("./../../../ Users.bin");
             base.stopServer();           
         }
 
@@ -130,11 +130,13 @@ namespace Server
 
         public void addUser(string login, string password)
         {
-                concretAM.addUser(login, password);                       
+            concretAM.addUser(login, password);
+            save("./../../../Users.bin");
         }
         public void removeUser(string login)
         {
-                concretAM.removeUser(login);
+            concretAM.removeUser(login);
+            save("./../../../Users.bin");
         }
         public void authentify(string login, string password)
         {

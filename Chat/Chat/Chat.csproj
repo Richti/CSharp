@@ -69,17 +69,20 @@
     <Compile Include="AuthentificationN\AuthentificationManager.cs" />
     <Compile Include="Client\ClientChatRoom.cs" />
     <Compile Include="Client\ClientGestTopics.cs" />
-    <Compile Include="Form\Connexion.cs">
+    <Compile Include="FormN\Connexion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Connexion.Designer.cs">
+    <Compile Include="FormN\Connexion.Designer.cs">
       <DependentUpon>Connexion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\InfoUser.cs">
+    <Compile Include="FormN\InfoUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\InfoUser.Designer.cs">
+    <Compile Include="FormN\InfoUser.Designer.cs">
       <DependentUpon>InfoUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormN\RoomTab.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Net\MessageType.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -110,10 +113,10 @@
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form\Connexion.resx">
+    <EmbeddedResource Include="FormN\Connexion.resx">
       <DependentUpon>Connexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\InfoUser.resx">
+    <EmbeddedResource Include="FormN\InfoUser.resx">
       <DependentUpon>InfoUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

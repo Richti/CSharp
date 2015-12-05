@@ -29,18 +29,10 @@ namespace Net
             this.port = port;
         }
 
-        public void connect() // à modifier
+        public void connect() 
         {
-            try
-            {
-                commSock.Connect(Ip, port);
-                ns = commSock.GetStream();
-                Console.WriteLine("Connecté");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }   
+            commSock.Connect(Ip, port);
+            ns = commSock.GetStream(); 
         }
 
         public Message getMessage() 
@@ -51,6 +43,18 @@ namespace Net
         public void sendMessage(Message m) 
         {
                 Message.send(m, ns); 
+        }
+
+        ~TCPClient()
+        {
+            if(commSock != null)
+            {
+                commSock.Close();
+            }
+            if (ns != null)
+            {
+                ns.Close();
+            }
         }
     }
 }

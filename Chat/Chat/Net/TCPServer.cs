@@ -36,7 +36,7 @@ namespace Net
             waitSocket.Start();
             run();
         }
-        public void startServer(Object port) // pour les threads
+        public void startServer(Object port) 
         {  
             this.port = (int) port; 
             waitSocket = new TcpListener(ip, this.port);
@@ -94,10 +94,8 @@ namespace Net
             Message.send(m, ns);
         }
 
-        public virtual object Clone()
-        {
-            return null; 
-        }
+        abstract public object Clone();
+
     }
 }
 

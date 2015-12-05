@@ -12,21 +12,31 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//TODO
+// threads qui ne s'arrete pas si le server ne se stop pas
+// faire diagramme de classe
+// faire readme
+
+
+// 2 Séparer client et serveur??
+
+// 3 gérer les alias : les stockers dans le fichier texte
+// 4 status de connexion pour gérer les multi co!
+// 3 unicité de l'alias
+// 5 WPF
+// 6 Liste des personnes connecté au salon
+
+
 class Program
 {
-    //Coté serveur
     private static ServerGestTopics serverGestionTopics;
     private static int port = 55555;
     private static IPAddress Ip = IPAddress.Parse("127.0.0.1");
 
     public static void Main()
     {
-       Application.EnableVisualStyles();
-       Application.SetCompatibleTextRenderingDefault(false);
        launcherServer();
-       Application.Run(new Connexion(Ip,port));
-       //Application.Run(new InfoUser(new User ("Vuitton","Louis")));
-       // test();
+        //test();
     }
 
     public static void launcherServer()
@@ -37,11 +47,10 @@ class Program
             ParameterizedThreadStart ts = new ParameterizedThreadStart(serverGestionTopics.startServer);
             Thread t = new Thread(ts);
             t.Start(port);
-            Console.WriteLine("Serveur lancé !" + Environment.NewLine);
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            Console.WriteLine("Le serveur s'est mal lancé");
+            Console.WriteLine(e.Message);
         }    
     }
 

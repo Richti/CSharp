@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace AuthentificationN
 {
-    class Authentification : AuthentificationManager
+    [Serializable]
+    class Authentification : AuthentificationManager ,ISerializable
     {
         public List<User> users { get; set; }
 
@@ -15,7 +18,11 @@ namespace AuthentificationN
         {
             users = new List<User>();
         }
-        
+        public Authentification(SerializationInfo info, StreamingContext ctxt)
+        {
+            users = (List<User>)info.GetValue("k_head", typeof(List<User>));
+        }
+
         public void addUser(string login, string password) 
         { 
             lock(users)
@@ -67,13 +74,12 @@ namespace AuthentificationN
         {
             lock(users)
             {
-                using (StreamReader sr = new StreamReader(path))
+                BinaryFormatter bf = new BinaryFormatter();
+                using (FileStream flux = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
+                    if (flux.CanRead)
                     {
-                        string[] loginPassword = line.Split(';');
-                        addUser(loginPassword[0], loginPassword[1]);
+                       users = (List<User>) bf.Deserialize(flux);
                     }
                 }
             }
@@ -83,15 +89,20 @@ namespace AuthentificationN
         {
             lock(users)
             {
-                using (StreamWriter sw = new StreamWriter(path))
+                BinaryFormatter bf = new BinaryFormatter();
+                using (FileStream flux = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    foreach (User user in users)
+                    if (flux.CanWrite)
                     {
-                        sw.WriteLine(user.login + ";" + user.password);
+                        bf.Serialize(flux, users);
                     }
                 }
             }
         }
 
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("k_users", users);
+        }
     }
 }

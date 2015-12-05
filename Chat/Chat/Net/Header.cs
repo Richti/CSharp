@@ -25,7 +25,32 @@ namespace Net
 
         public override string ToString()
         {
-            return "["+ date.Hour + ":" + date.Minute + ":" + date.Second + "] " + "<" + sender + "> ";
+            string hour, min, second;
+            if(date.Hour < 10)
+            {
+                hour = "0" + date.Hour.ToString();
+            }
+            else
+            {
+                hour = date.Hour.ToString();
+            }
+            if (date.Minute < 10)
+            {
+                min = "0" + date.Minute.ToString();
+            }
+            else
+            {
+                min = date.Minute.ToString();
+            }
+            if (date.Second < 10)
+            {
+                second = "0" + date.Second.ToString();
+            }
+            else
+            {
+                second = date.Second.ToString();
+            }
+            return "["+ hour + ":" + min + ":" + second + "] " + "<" + sender + "> ";
         }
     }
 }

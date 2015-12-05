@@ -26,6 +26,7 @@ namespace Server
             while (comm.Connected)
             {
                 Message message = getMessage();
+                if(message==null) { return; }
                 switch(message.head.type)
                 {
                     case MessageType.JOINCR:
@@ -77,6 +78,7 @@ namespace Server
         public void quit(IChatter c)
         {
             concretCR.quit(c);
+            post(" s'est déconnecté(e).", c);
         }
 
         public void join(IChatter c)
