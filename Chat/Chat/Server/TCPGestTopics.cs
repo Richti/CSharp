@@ -32,7 +32,7 @@ namespace Server
             {
                 if (topicsChatRoom.Contains(name))
                 {                    
-                    throw new TopicExistsException("The topic exists already"); // à modifier
+                    throw new TopicExistsException("The topic exists already"); 
                 }
                 else
                 {

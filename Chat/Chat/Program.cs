@@ -12,12 +12,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//TODO
+// threads qui ne s'arrete pas si le server ne se stop pas
+// faire diagramme de classe
+// faire readme
 
-// 0 deconnexion non visible lors d'une deco sauvage :/
-
-
-// 1 possibilité de supprimer son compte
-// 1 deco de la session
 
 // 2 Séparer client et serveur??
 
@@ -25,7 +24,7 @@ using System.Windows.Forms;
 // 4 status de connexion pour gérer les multi co!
 // 3 unicité de l'alias
 // 5 WPF
-// 6 Liste des personnes connecté au salon!
+// 6 Liste des personnes connecté au salon
 
 
 class Program

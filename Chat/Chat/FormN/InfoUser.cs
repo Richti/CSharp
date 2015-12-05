@@ -20,13 +20,17 @@ namespace FormN
     public partial class InfoUser : Form
     {
         private User utilisateur;
-        private IChatter chatter;        
+        private IChatter chatter;
+        private Connexion connexion;        
         public ClientGestTopics clientGT { get; set; }
+        public List<RoomTab> rooms { get; set; } = new List<RoomTab>();
 
-        public InfoUser(User U1)
+        public InfoUser(User U1,Connexion connexion)
         {
             InitializeComponent();
             utilisateur = U1;
+            this.connexion = connexion;
+            clientGT = connexion.clientGT;
             splitContainer1.SplitterDistance = 128; 
             tabControl1.TabPages.Remove(tabPage2);
         }        
@@ -46,7 +50,13 @@ namespace FormN
 
         private void buttonDéco_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            foreach (RoomTab room in rooms)
+            {
+                room.iChatRoom.quit(((ClientChatRoom)room.iChatRoom).chatter);
+            }
+            connexion.initText();
+            connexion.Show();
+            Hide();
         }
 
 
@@ -134,7 +144,9 @@ namespace FormN
                 {
                     IChatroom iChatRoom = clientGT.joinTopic(comboBox1.Text); 
                     iChatRoom.join(chatter); 
-                    ((ClientChatRoom)iChatRoom).room = new RoomTab(this,iChatRoom); 
+                    RoomTab room = new RoomTab(this, iChatRoom);
+                    rooms.Add(room);
+                    ((ClientChatRoom)iChatRoom).room = room;
                     iChatRoom.post(" s'est connecté", chatter); 
                 }
                  else
@@ -160,7 +172,6 @@ namespace FormN
         {
           
             String[] topics = listTopic(clientGT.listTopics());
-            //Interface
            
             comboBox1.Items.Clear();
             foreach (String topic in topics)
@@ -178,6 +189,36 @@ namespace FormN
 
         private void textBoxNomSalon_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void InfoUser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void InfoUser_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (RoomTab room in rooms)
+            {
+                room.iChatRoom.quit(((ClientChatRoom)room.iChatRoom).chatter);
+            }
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                clientGT.removeUser(utilisateur.login);
+                connexion.initText();
+                connexion.Show();
+                Hide();
+            }
+            catch(UserUnknownException )
+            {
+                labelAlias.Text = "Problème dans la suppression du compte.";
+            }
 
         }
     }

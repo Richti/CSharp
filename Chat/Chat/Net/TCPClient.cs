@@ -44,5 +44,17 @@ namespace Net
         {
                 Message.send(m, ns); 
         }
+
+        ~TCPClient()
+        {
+            if(commSock != null)
+            {
+                commSock.Close();
+            }
+            if (ns != null)
+            {
+                ns.Close();
+            }
+        }
     }
 }

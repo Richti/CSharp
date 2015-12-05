@@ -18,7 +18,7 @@ namespace FormN
     public partial class Connexion : Form
     {
         private User user;
-        private ClientGestTopics clientGT;
+        public ClientGestTopics clientGT { get; set; }
 
         public Connexion(IPAddress Ip, int port)
         {
@@ -28,16 +28,23 @@ namespace FormN
             test1.Start();
         }
 
+        public void initText()
+        {
+            textBoxLogin.Text = "";
+            textBoxPassword.Text = "";
+            labelErreur.Text = "";
+        }
+
         private void buttonConnexion_Click(object sender, EventArgs e)
         {
             try {
 
                 clientGT.authentify(textBoxLogin.Text, textBoxPassword.Text);
-                this.Hide();
+
                 user = new User(textBoxLogin.Text, textBoxPassword.Text);
-                InfoUser info = new InfoUser(user);
-                info.clientGT = clientGT;
-                info.ShowDialog();
+                InfoUser info = new InfoUser(user,this);
+                info.Show();
+                this.Hide();
             }
             catch(WrongPasswordException)
             {
@@ -48,6 +55,7 @@ namespace FormN
                 labelErreur.Text = "Ce compte n'existe pas !";
             }
         }
+
 
         private void buttonCréer_Click(object sender, EventArgs e) 
         {

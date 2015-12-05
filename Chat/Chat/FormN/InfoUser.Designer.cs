@@ -48,6 +48,7 @@
             this.labelErrorCreaSal = new System.Windows.Forms.Label();
             this.buttonAccéderSalons = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -96,6 +97,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.labelAlias);
             this.tabPage1.Controls.Add(this.textBoxAlias);
             this.tabPage1.Controls.Add(this.label3);
@@ -321,6 +323,17 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Liste des salons";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(56, 205);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 32);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Supprimer mon compte";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // InfoUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,6 +345,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "InfoUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InfoUser_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InfoUser_FormClosed);
             this.Load += new System.EventHandler(this.InfoUser_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -368,7 +383,6 @@
         private System.Windows.Forms.TextBox textBoxAlias;
         private System.Windows.Forms.Label labelAlias;
         public System.Windows.Forms.ComboBox comboBox1;
-
-
+        private System.Windows.Forms.Button button1;
     }
 }

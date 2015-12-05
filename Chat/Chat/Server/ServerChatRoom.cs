@@ -26,6 +26,7 @@ namespace Server
             while (comm.Connected)
             {
                 Message message = getMessage();
+                if(message==null) { return; }
                 switch(message.head.type)
                 {
                     case MessageType.JOINCR:

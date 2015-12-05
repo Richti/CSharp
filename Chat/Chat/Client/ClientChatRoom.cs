@@ -61,8 +61,7 @@ namespace Client
                     room.setTextBox(room.getTextBoxConv().Text + message.ToString() + Environment.NewLine);
                 }
                 catch(Exception)
-                {
-                    post(" s'est déconnecté(e).", chatter); // ne fonctionne pas!
+                { 
                     doRun = false;
                 }
             }
